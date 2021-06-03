@@ -92,6 +92,18 @@ const routes = [
       name: 'EditDeduction',
       component: () => import(/* webpackChunkName: "editdeduction" */ '../views/EditDeduction.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: 'payment/:id',
+      name: 'Payment',
+      component: () => import(/* webpackChunkName: "payment" */ '../views/Payment.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: 'liquidate/:id',
+      name: 'Liquidate',
+      component: () => import(/* webpackChunkName: "liquidate" */ '../views/Liquidate.vue'),
+      meta: { requiresAuth: true }
     }]
   }
 ]

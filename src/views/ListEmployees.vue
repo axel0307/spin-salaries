@@ -3,15 +3,28 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table table-responsive-sm table-bordered table-striped table-hover"
+        class="table caption-top table-responsive-sm table-bordered table-striped table-hover"
       >
+        <caption>
+          <div class="d-flex justify-content-center">
+            <i class="mx-1 my-auto fw-bold icon-size align-right bi bi-pen"></i
+            ><span class="pe-4"> = Editar empleado</span>
+            <i
+              class="mx-1 my-auto fw-bold icon-size align-right bi bi-piggy-bank"
+            ></i
+            ><span class="pe-4"> = Pagar nómina</span>
+            <i
+              class="mx-1 my-auto fw-bold icon-size align-right bi bi-door-open"
+            ></i
+            ><span class="pe-4"> = Realizar finiquito</span>
+          </div>
+        </caption>
         <thead>
           <tr>
-            <!-- <th scope="col">#</th> -->
             <th scope="col">Clave</th>
             <th scope="col">Nombre</th>
             <th scope="col">Área</th>
-            <th scope="col">Puesto de trabajo</th>
+            <th scope="col">Trabajo</th>
             <th scope="col">Salario Diario</th>
             <th scope="col">Clase</th>
             <th scope="col">Acciones</th>
@@ -85,3 +98,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.icon-size {
+  font-size: 1.3rem;
+}
+</style>

@@ -20,4 +20,5 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 // Importamos nuevas fuentes
 import "../src/assets/fonts/fonts.css"
 
-createApp(App).use(router).mount('#app')
+
+createApp(App).use(router).use(VueMoment).mount('#app')

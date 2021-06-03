@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row pt-4">
+    <div class="pt-4 row">
       <div class="col-8 d-none d-lg-flex">
         <img
           src="../../src/assets/img/undraw_login.svg"
@@ -9,7 +9,7 @@
         />
       </div>
 
-      <div class="col-auto col-lg-4 mx-auto">
+      <div class="col-auto mx-auto col-lg-4">
         <div
           v-if="errors"
           class="alert alert-danger d-flex align-items-center alert-dismissible fade show"
@@ -17,7 +17,7 @@
         >
           <div>
             <i
-              class="bi bi-shield-exclamation icon-size text-danger align-middle mx-1"
+              class="mx-1 align-middle bi bi-shield-exclamation icon-size text-danger"
             ></i
             >Datos incorrectos
           </div>
@@ -28,10 +28,10 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="card pt-3">
+        <div class="pt-3 card">
           <img
             src="../../src/assets/img/spin-salaries.svg"
-            class="img-fluid d-flex mx-auto p-2"
+            class="p-2 mx-auto img-fluid d-flex"
             style="max-width: 6rem"
             alt="logo"
           />
@@ -41,7 +41,7 @@
             class="px-4 py-3 needs-validation"
             novalidate
           >
-            <div class="form-floating mb-3">
+            <div class="mb-3 form-floating">
               <input
                 type="email"
                 v-model.trim="email"
@@ -51,12 +51,12 @@
               />
               <label for="user"
                 ><i
-                  class="bi bi-person-circle icon-size text-primary align-middle mx-1"
+                  class="mx-1 align-middle bi bi-person-circle icon-size text-primary"
                 ></i
                 >Correo Electrónico</label
               >
             </div>
-            <div class="form-floating mb-3">
+            <div class="mb-3 form-floating">
               <input
                 type="password"
                 v-model.trim="password"
@@ -66,7 +66,7 @@
               />
               <label for="pass"
                 ><i
-                  class="bi bi-lock-fill icon-size text-primary text-center align-middle mx-1"
+                  class="mx-1 text-center align-middle bi bi-lock-fill icon-size text-primary"
                 ></i
                 >Contraseña</label
               >
@@ -116,10 +116,10 @@
                 <div class="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-outline-success my-0"
+                    class="my-0 btn btn-outline-success"
                     data-bs-dismiss="modal"
                   >
-                    Entendido<i class="bi bi-check-lg align-middle mx-1"></i>
+                    Entendido<i class="mx-1 align-middle bi bi-check-lg"></i>
                   </button>
                 </div>
               </div>
@@ -136,6 +136,8 @@ import router from "../router/index.js";
 
 export default {
   data: () => ({
+    API_KEY: process.env.VUE_APP_API_TOOL_KIT,
+    URL_API: process.env.VUE_APP_URL_GOOGLEAPIS,
     email: "",
     password: "",
     errors: false,
@@ -144,20 +146,15 @@ export default {
     // Debe ser una función asincrona, de otra forma va a fallar
     async validarUsuario() {
       if (this.password.length >= 6 && this.email != "") {
-        const API_KEY = "AIzaSyAXPr12Z2axCMJuOf15KlcwnJscDVBqhKg";
-
         try {
-          const resp = await fetch(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
-            {
-              method: "POST",
-              body: JSON.stringify({
-                email: this.email,
-                password: this.password,
-                returnSecureToken: true,
-              }),
-            }
-          );
+          const resp = await fetch(`${this.URL_API}?key=${this.API_KEY}`, {
+            method: "POST",
+            body: JSON.stringify({
+              email: this.email,
+              password: this.password,
+              returnSecureToken: true,
+            }),
+          });
 
           const data = await resp.json();
 

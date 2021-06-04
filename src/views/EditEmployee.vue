@@ -306,7 +306,7 @@ export default {
         });
         this.trabajos = data;
       }
-      console.log(this.trabajos);
+      // console.log(this.trabajos);
     },
     async getEmployee() {
       const user = JSON.parse(localStorage.getItem("user"));
@@ -317,6 +317,7 @@ export default {
       const data = await res.json();
 
       this.employee = data;
+      // console.log(this.employee);
     },
     async updateEmployee() {
       const user = JSON.parse(localStorage.getItem("user"));

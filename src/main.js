@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
+import moment from 'moment'
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas"
+
 
 // Importamos jQuery
 import "../node_modules/jquery/dist/jquery.js"
@@ -21,4 +25,4 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import "../src/assets/fonts/fonts.css"
 
 
-createApp(App).use(router).use(VueMoment).mount('#app')
+createApp(App).use(router).use(moment).use(html2canvas).use(jsPDF).mount('#app')

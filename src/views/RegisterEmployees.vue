@@ -206,6 +206,43 @@
       />
     </div>
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
+      Agregar deducciones y percepciones
+    </h5>
+    <div class="col-md-6">
+      <p class="text-start">Agrega deducciones del empleado(a)</p>
+      <div
+        class="col-md-2 form-check text-start"
+        v-for="(deduccion, i) in deducciones"
+        :key="i"
+      >
+        <input
+          v-model="employee.deducciones"
+          class="form-check-input"
+          type="checkbox"
+          :value="deduccion"
+        />
+        <label class="form-check-label">
+          {{ deduccion.nombre }}
+        </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <p class="text-start">Agrega percepciones del empleado(a)</p>
+      <div
+        class="col-md-6 form-check text-start"
+        v-for="(percepcion, i) in percepciones"
+        :key="i"
+      >
+        <input
+          v-model="employee.percepciones"
+          class="form-check-input"
+          type="checkbox"
+          :value="percepcion"
+        />
+        <label class="form-check-label">{{ percepcion.nombre }}</label>
+      </div>
+    </div>
+    <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
       Datos para su cuenta
     </h5>
     <div class="col-md-6">
@@ -300,6 +337,8 @@
         </div>
       </div>
     </div>
+    <hr />
+    {{ this.employee }}
   </form>
 </template>
 
@@ -322,6 +361,8 @@ export default {
         rfc: "",
         clave: "",
         trabajo: "",
+        percepciones: [],
+        deducciones: [],
         firma: "",
         clase: "",
         duracion: "",
@@ -331,6 +372,10 @@ export default {
       },
       jobs: [],
       trabajos: [],
+      deductions: [],
+      deducciones: [],
+      perceptions: [],
+      percepciones: [],
       options: [
         { content: "Confianza", value: "Confianza" },
         { content: "Base", value: "Base" },
@@ -340,6 +385,8 @@ export default {
   },
   mounted() {
     this.getJobs();
+    this.getPerceptions();
+    this.getDeductions();
   },
   methods: {
     onChangeSelect(e) {
@@ -361,6 +408,39 @@ export default {
         this.trabajos = data;
       }
       // console.log(this.trabajos);
+    },
+    async getPerceptions() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const res = await fetch(
+        `${this.API_FIREBASE}nomina/percepciones.json?auth=${user.idToken}`
+      );
+      const data = await res.json();
+
+      for (let i in data) {
+        this.perceptions.push({
+          id: i,
+          data: data[i],
+        });
+        this.percepciones = data;
+      }
+    },
+    async getDeductions() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const res = await fetch(
+        `${this.API_FIREBASE}nomina/deducciones.json?auth=${user.idToken}`
+      );
+      const data = await res.json();
+
+      for (let i in data) {
+        this.deductions.push({
+          id: i,
+          data: data[i],
+        });
+        this.deducciones = data;
+      }
+      // console.log(this.deducciones);
     },
     async createEmployee() {
       const user = JSON.parse(localStorage.getItem("user"));

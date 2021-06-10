@@ -6,7 +6,6 @@ import moment from 'moment'
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas"
 
-
 // Importamos jQuery
 import "../node_modules/jquery/dist/jquery.js"
 

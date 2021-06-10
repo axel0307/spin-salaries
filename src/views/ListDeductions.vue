@@ -3,11 +3,10 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table table-responsive-sm caption-top table-bordered table-striped table-hover"
+        class="table  table-responsive-sm caption-top table-bordered table-striped table-hover"
       >
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Clave</th>
             <th scope="col">Nombre</th>
             <th scope="col">Importe</th>

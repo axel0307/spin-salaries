@@ -39,7 +39,8 @@ h1 {
   font-family: "Farro-Medium", sans-serif;
 }
 
-h5 {
+h5,
+h6 {
   font-family: "Farro-Light", sans-serif;
 }
 </style>

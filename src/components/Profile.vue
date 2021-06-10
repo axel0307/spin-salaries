@@ -7,15 +7,15 @@
         alt="imageLogin"
       />
     </div>
-    <div class="col-auto col-lg-4 mx-auto">
+    <div class="col-auto mx-auto col-lg-4">
       <div class="row d-lg-none text-dark">
         <img
           src="../../src/assets/img/group.svg"
-          class="img-fluid py-2"
+          class="py-2 img-fluid"
           alt="imageLogin"
         />
       </div>
-      <h1 class="fw-bold text-danger">Hola {{ usuario }}</h1>
+      <h1 class="fw-bold text-danger">{{ saludo }}</h1>
       <h1 class="text-dark">Es bueno verte de nuevo</h1>
       <p class="text-muted">
         <small>Recuerda que puedes navegar entre las diferentes opciones</small>
@@ -27,7 +27,7 @@
 <script>
 export default {
   data: () => ({
-    usuario: "Axel",
+    saludo: "¡Hola 😃!",
   }),
 };
 </script>

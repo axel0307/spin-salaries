@@ -215,6 +215,43 @@
       />
     </div>
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
+      Agregar deducciones y percepciones
+    </h5>
+    <div class="col-md-6">
+      <p class="text-start">Agrega deducciones del empleado(a)</p>
+      <div
+        class="col-md-2 form-check text-start"
+        v-for="(deduccion, i) in deducciones"
+        :key="i"
+      >
+        <input
+          v-model="employee.deducciones"
+          class="form-check-input"
+          type="checkbox"
+          :value="deduccion"
+        />
+        <label class="form-check-label">
+          {{ deduccion.nombre }}
+        </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <p class="text-start">Agrega percepciones del empleado(a)</p>
+      <div
+        class="col-md-6 form-check text-start"
+        v-for="(percepcion, i) in percepciones"
+        :key="i"
+      >
+        <input
+          v-model="employee.percepciones"
+          class="form-check-input"
+          type="checkbox"
+          :value="percepcion"
+        />
+        <label class="form-check-label">{{ percepcion.nombre }}</label>
+      </div>
+    </div>
+    <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
       Datos para su cuenta
     </h5>
     <div class="col-md-6">
@@ -256,7 +293,7 @@
         <option value="false">De baja</option>
       </select>
     </div>
-    <div class="pb-5 col-12">
+    <div class="pb-3 col-12">
       <button type="submit" class="btn btn-outline-primary">
         Guardar información
       </button>
@@ -272,10 +309,16 @@ export default {
   data() {
     return {
       API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
-      employee: {},
+      employee: {
+        deducciones: [{ clave: "CD001", nombre: "ISR" }],
+      },
       id: this.$route.params.id,
       jobs: [],
       trabajos: [],
+      deductions: [],
+      deducciones: [],
+      perceptions: [],
+      percepciones: [],
       options: [
         { content: "Confianza", value: "Confianza" },
         { content: "Base", value: "Base" },
@@ -286,6 +329,8 @@ export default {
   mounted() {
     this.getEmployee();
     this.getJobs();
+    this.getDeductions();
+    this.getPerceptions();
   },
   methods: {
     onChangeSelect(e) {
@@ -307,6 +352,39 @@ export default {
         this.trabajos = data;
       }
       // console.log(this.trabajos);
+    },
+    async getDeductions() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const res = await fetch(
+        `${this.API_FIREBASE}nomina/deducciones.json?auth=${user.idToken}`
+      );
+      const data = await res.json();
+
+      for (let i in data) {
+        this.deductions.push({
+          id: i,
+          data: data[i],
+        });
+        this.deducciones = data;
+      }
+      // console.log(this.deducciones);
+    },
+    async getPerceptions() {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const res = await fetch(
+        `${this.API_FIREBASE}nomina/percepciones.json?auth=${user.idToken}`
+      );
+      const data = await res.json();
+
+      for (let i in data) {
+        this.perceptions.push({
+          id: i,
+          data: data[i],
+        });
+        this.percepciones = data;
+      }
     },
     async getEmployee() {
       const user = JSON.parse(localStorage.getItem("user"));

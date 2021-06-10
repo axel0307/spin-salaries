@@ -10,8 +10,6 @@
 
 ### 🏠 [Homepage](https://github.com/axel0307/spin-salaries#readme)
 
-### ✨ [Demo](https://github.com/axel0307/spin-salaries#readme)
-
 ## Install
 
 ```sh
@@ -45,4 +43,4 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+This project was created with ❤️ by [@axel0307](https://github.com/axel0307)

@@ -42,6 +42,7 @@
         v-model.trim="job.nombre"
         class="form-control"
         id="puesto"
+        required="true"
         maxlength="30"
         pattern="^[a-zA-Z\s\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]{3,}$"
       />
@@ -54,6 +55,7 @@
         v-model.number="job.salario"
         class="form-control"
         id="salario"
+        required="true"
         min="141.7"
         pattern="^\d+\.?\d*$"
         max="3000"

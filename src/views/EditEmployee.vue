@@ -132,7 +132,7 @@
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
       Datos de su puesto de trabajo
     </h5>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="clave" class="form-label">Clave de empleado</label>
       <input
         type="text"
@@ -148,7 +148,7 @@
         Solo admite mayúsculas y números (6 carácteres)
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="labor" class="form-label">Labor</label>
       <select
         class="form-select"
@@ -166,6 +166,19 @@
         >
           {{ trabajo.nombre }}
         </option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label" for="tipoNomina">Tipo de nómina</label>
+      <select
+        class="form-select"
+        id="tipoNomina"
+        required="true"
+        v-model="employee.tipoNomina"
+      >
+        <option selected disabled value="">Selecciona una opción</option>
+        <option value="7">Semanal</option>
+        <option value="15">Quincenal</option>
       </select>
     </div>
     <div class="col-md-4">

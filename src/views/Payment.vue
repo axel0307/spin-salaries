@@ -13,7 +13,17 @@
         <!-- RFC -->
         <p class="text-end">Sociedad Anónima (S.A)</p>
         <!-- Nombre -->
-        <p class="text-end">e6dbc18f-cf0e-46bc-90b1</p>
+        <p class="text-end">
+          {{
+            generadorFolioFiscalUno +
+            "-" +
+            generadorFolioFiscalDos +
+            "-" +
+            generadorFolioFiscalTres +
+            "-" +
+            generadorFolioFiscalCuatro
+          }}
+        </p>
         <!-- Folio fiscal -->
       </div>
       <div class="col-6 col-md-3">
@@ -26,7 +36,7 @@
         <!-- Fecha y hora de emisión -->
         <p class="text-end">Nómina</p>
         <!-- Comprobante -->
-        <p class="text-end">5477</p>
+        <p class="text-end">{{ generadorFolio }}</p>
         <!-- Folio -->
       </div>
     </div>
@@ -83,7 +93,10 @@
           {{ employee.curp }}
         </p>
         <!-- CURP -->
-        <p class="text-end">Quincenal</p>
+        <p class="text-end" v-if="quincenal === employee.tipoNomina">
+          Quincenal
+        </p>
+        <p class="text-end" v-else>Semanal</p>
         <p class="text-end">
           {{ job.salario }}
         </p>
@@ -99,7 +112,7 @@
       <div class="col-6 col-md-3">
         <p class="text-start">Tipo de nómina:</p>
         <p class="text-start">Fecha pago:</p>
-        <p class="text-start">Fecha inicial de quincena:</p>
+        <p class="text-start">Fecha inicial de pago:</p>
       </div>
       <div class="col-6 col-md-3">
         <p class="text-end">Nómina ordinario</p>
@@ -112,15 +125,15 @@
       <div class="col-6 col-md-3">
         <p class="text-start">Moneda:</p>
         <p class="text-start">No. de días pagados:</p>
-        <p class="text-start">Fecha final de quicena:</p>
+        <p class="text-start">Fecha final de pago:</p>
       </div>
       <div class="col-6 col-md-3">
         <p class="text-end">Peso Mexicano</p>
         <!-- Moneda -->
-        <p class="text-end">15.000</p>
+        <p class="text-end">{{ employee.tipoNomina }}</p>
         <!-- No. de días pagados -->
         <p class="text-end">
-          {{ quincena }}
+          {{ nominaDias }}
         </p>
         <!-- Fecha final de pago -->
       </div>
@@ -147,8 +160,8 @@
                 <td>1</td>
                 <td>ACT</td>
                 <td>Pago de nómina</td>
-                <td>{{ job.salario * 15 }}</td>
                 <td>{{ job.salario }}</td>
+                <td>{{ job.salario * employee.tipoNomina }}</td>
               </tr>
             </tbody>
           </table>
@@ -301,6 +314,9 @@ export default {
       deductions: [],
       deducciones: [],
       fechaActual: null,
+      quincenal: "15",
+      caracteres:
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
       // VARIABLES PARA CALCULOS
       //Variables para la realización de percepciones.
       SMG: 141.7,
@@ -314,14 +330,62 @@ export default {
     this.getDeductions();
   },
   computed: {
-    quincena() {
-      return moment().subtract(15, "days").add(15, "days").format("YYYY-MM-DD");
+    nominaDias() {
+      let dias = this.employee.tipoNomina;
+      return moment()
+        .subtract(dias, "days")
+        .add(dias, "days")
+        .format("YYYY-MM-DD");
     },
     pago() {
       return moment().add(2, "days").format("YYYY-MM-DD");
     },
     inicio() {
-      return moment().subtract(15, "days").format("YYYY-MM-DD");
+      let dias = this.employee.tipoNomina;
+      return moment().subtract(dias, "days").format("YYYY-MM-DD");
+    },
+    generadorFolio() {
+      return Math.round(Math.random() * (1000000 - 100) + 1);
+    },
+    generadorFolioFiscalUno() {
+      let folio = "";
+      const longitudFolio = this.caracteres.length;
+      for (let i = 0; i < 4; i++) {
+        folio += this.caracteres.charAt(
+          Math.floor(Math.random() * longitudFolio)
+        );
+      }
+      return folio;
+    },
+    generadorFolioFiscalDos() {
+      let folio = "";
+      const longitudFolio = this.caracteres.length;
+      for (let i = 0; i < 4; i++) {
+        folio += this.caracteres.charAt(
+          Math.floor(Math.random() * longitudFolio)
+        );
+      }
+      return folio;
+    },
+    generadorFolioFiscalTres() {
+      let folio = "";
+      const longitudFolio = this.caracteres.length;
+      for (let i = 0; i < 4; i++) {
+        folio += this.caracteres.charAt(
+          Math.floor(Math.random() * longitudFolio)
+        );
+      }
+      return folio;
+    },
+    generadorFolioFiscalCuatro() {
+      let folio = "";
+      const longitudFolio = this.caracteres.length;
+      for (let i = 0; i < 4; i++) {
+        folio += this.caracteres.charAt(
+          Math.floor(Math.random() * longitudFolio)
+        );
+      }
+      return folio;
     },
   },
   methods: {

@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import moment from 'moment'
 import { jsPDF } from "jspdf";
+import gsap from "gsap";
 import html2canvas from "html2canvas"
 
 // Importamos jQuery
@@ -22,6 +23,9 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 
 // Importamos nuevas fuentes
 import "../src/assets/fonts/fonts.css"
-
-
-createApp(App).use(router).use(moment).use(html2canvas).use(jsPDF).mount('#app')
+const myMixin = {
+    created: function () {
+        this.gsap = gsap;
+      }
+}
+createApp(App).mixin(myMixin).use(router).use(moment).use(html2canvas).use(jsPDF).mount('#app')

@@ -22,7 +22,7 @@
           class="mx-1 my-auto icon-size-g fw-bold align-left bi bi-piggy-bank"
         ></i
       ></router-link>
-      <router-link class="link-danger" :to="`/dashboard/liquidate/${data.id}`"
+      <router-link class="link-danger" :to="`/dashboard/liquidate`"
         ><i
           class="mx-1 my-auto icon-size fw-bold align-left bi bi-door-open"
         ></i

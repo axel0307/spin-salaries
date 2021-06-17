@@ -25,6 +25,7 @@
         v-model.trim="perception.nombre"
         class="form-control"
         id="percepcion"
+        required="true"
         maxlength="30"
         pattern="^[a-zA-Z\s\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]{3,}$"
       />
@@ -37,6 +38,7 @@
         v-model.number="perception.importe"
         class="form-control"
         id="importe"
+        required="true"
         max="1000"
         min="10"
         pattern="^\d+\.?\d*$"

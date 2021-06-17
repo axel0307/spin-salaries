@@ -1,14 +1,14 @@
-<h1 align="center">Welcome to spin-salaries 👋</h1>
+<h1 align="center">Welcome to Spin Salaries 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/axel0307/spin-salaries#readme" target="_blank">
+  <a href="https://github.com/axelfelixfr/spin-salaries#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
 
 > Sistema de nomina hecho con el framework de frontend Vue y con Firebase como backend
 
-### 🏠 [Homepage](https://github.com/axel0307/spin-salaries#readme)
+### 🏠 [Homepage](https://github.com/axelfelixfr/spin-salaries#readme)
 
 ## Install
 
@@ -32,15 +32,16 @@ npm run test
 
 👤 **Axel Felix**
 
-* Github: [@axel0307](https://github.com/axel0307)
+- Github: [@axelfelixfr](https://github.com/axelfelixfr)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/axel0307/spin-salaries/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/axelfelixfr/spin-salaries/issues).
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
-This project was created with ❤️ by [@axel0307](https://github.com/axel0307)
+---
+
+_This project was created with ❤️ by [@axelfelixfr](https://github.com/axelfelixfr)_

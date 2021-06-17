@@ -19,12 +19,13 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label class="form-label" for="percepcion">Nombre</label>
+      <label class="form-label" for="deduccion">Nombre</label>
       <input
         type="text"
         v-model.trim="deduction.nombre"
         class="form-control"
-        id="percepcion"
+        id="deduccion"
+        required="true"
         maxlength="30"
         pattern="^[a-zA-Z\s\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA]{3,}$"
       />
@@ -37,6 +38,7 @@
         v-model.number="deduction.importe"
         class="form-control"
         id="importe"
+        required="true"
         max="1000"
         min="10"
         pattern="^\d+\.?\d*$"

@@ -86,6 +86,7 @@
                 class="btn btn-outline-success"
                 data-bs-toggle="modal"
                 data-bs-target="#botonRegistrar"
+                data-bs-dismiss="modal"
               >
                 Todo esta correcto<i
                   class="mx-1 align-middle bi bi-check-lg"

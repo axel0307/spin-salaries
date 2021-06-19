@@ -3,8 +3,26 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table  table-responsive-sm caption-top table-bordered table-striped table-hover"
+        class="table  caption-top table-responsive-sm table-bordered table-striped table-hover"
       >
+        <caption>
+          <div class="text-center col-md-12">
+            <div
+              class="border-0 alert alert-primary d-flex align-items-center"
+              role="alert"
+            >
+              <div class="text-center align-middle">
+                <i class="bi bi-info-circle-fill icon-size"></i>
+                <small>
+                  Estas deducciones son importes fijos para todos los empleados,
+                  el ISR, IMSS y el Infonavit son de acuerdo a su salario, por
+                  lo tanto no pueden ser registrados aquí pero se tomaran en
+                  cuenta en la nómina.</small
+                >
+              </div>
+            </div>
+          </div>
+        </caption>
         <thead>
           <tr>
             <th scope="col">Clave</th>
@@ -19,27 +37,6 @@
             :key="i"
             :data="deduction"
           ></Deduction>
-          <!-- <tr>
-            <th scope="row">1</th>
-            <td>43S4S</td>
-            <td>IMSS</td>
-            <td>$100</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>54S7S</td>
-            <td>ISR</td>
-            <td>$1000</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>56S3S</td>
-            <td>Infonavit</td>
-            <td>$1000</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr> -->
         </tbody>
       </table>
       <Loading class="mx-auto" v-if="load"></Loading>
@@ -83,3 +80,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.icon-size {
+  font-size: 1.2rem;
+}
+</style>

@@ -223,8 +223,39 @@
     </h5>
     <div class="col-md-6">
       <p class="text-start">Agrega deducciones del empleado(a)</p>
+      <div class="col-md-2 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.imss"
+          id="imss"
+          class="form-check-input"
+          checked
+          disabled
+        />
+        <label for="imss">IMSS</label>
+      </div>
+      <div class="col-md-2 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.isr"
+          id="isr"
+          class="form-check-input"
+          checked
+          disabled
+        />
+        <label for="isr">ISR</label>
+      </div>
+      <div class="col-md-2 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.infonavit"
+          id="infonavit"
+          class="form-check-input"
+        />
+        <label for="infonavit">Infonavit</label>
+      </div>
       <div
-        class="col-md-2 form-check text-start"
+        class="col-md-6 form-check text-start"
         v-for="(deduccion, i) in deducciones"
         :key="i"
       >
@@ -241,6 +272,35 @@
     </div>
     <div class="col-md-6">
       <p class="text-start">Agrega percepciones del empleado(a)</p>
+      <div class="col-md-4 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.fondoAhorro"
+          id="fondoAhorro"
+          class="form-check-input"
+          checked
+          disabled
+        />
+        <label for="fondoAhorro">Fondo de ahorro</label>
+      </div>
+      <div class="col-md-4 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.primaVacacional"
+          id="primaVacacional"
+          class="form-check-input"
+        />
+        <label for="primaVacacional">Prima Vacacional</label>
+      </div>
+      <div class="col-md-2 form-check text-start">
+        <input
+          type="checkbox"
+          v-model="employee.aguinaldo"
+          id="aguinaldo"
+          class="form-check-input"
+        />
+        <label for="aguinaldo">Aguinaldo</label>
+      </div>
       <div
         class="col-md-6 form-check text-start"
         v-for="(percepcion, i) in percepciones"
@@ -253,6 +313,75 @@
           :value="percepcion"
         />
         <label class="form-check-label">{{ percepcion.nombre }}</label>
+      </div>
+      <div for="col-md-4 form-check text-start">
+        Horas Extra
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="dos"
+            v-model.number="employee.horasExtra"
+            value="2"
+          />
+          <label class="form-check-label" for="dos">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="cuatro"
+            v-model.number="employee.horasExtra"
+            value="4"
+          />
+          <label class="form-check-label" for="cuatro">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="seis"
+            v-model.number="employee.horasExtra"
+            value="6"
+          />
+          <label class="form-check-label" for="seis">6</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="ocho"
+            v-model.number="employee.horasExtra"
+            value="8"
+          />
+          <label class="form-check-label" for="ocho">8</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="diez"
+            v-model.number="employee.horasExtra"
+            value="10"
+          />
+          <label class="form-check-label" for="diez">10</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
+            id="doce"
+            v-model.number="employee.horasExtra"
+            value="12"
+          />
+          <label class="form-check-label" for="doce">12</label>
+        </div>
       </div>
     </div>
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
@@ -340,6 +469,7 @@
                 class="btn btn-outline-success"
                 data-bs-toggle="modal"
                 data-bs-target="#botonRegistrar"
+                data-bs-dismiss="modal"
               >
                 Todo esta correcto<i
                   class="mx-1 align-middle bi bi-check-lg"
@@ -350,6 +480,7 @@
         </div>
       </div>
     </div>
+    {{ employee }}
   </form>
 </template>
 
@@ -373,8 +504,17 @@ export default {
         clave: "",
         trabajo: "",
         tipoNomina: "",
-        percepciones: [],
-        deducciones: [],
+        // Arreglar el valor por defecto de las percepciones
+        percepciones: [{ clave: "CPE000", importe: 0, nombre: "Por defecto" }],
+        imss: true,
+        isr: true,
+        infonavit: false,
+        fondoAhorro: true,
+        horasExtra: 0,
+        primaVacacional: false,
+        aguinaldo: false,
+        // Arreglar el valor por defecto de las deducciones
+        deducciones: [{ clave: "CDE000", importe: 0, nombre: "Por defecto" }],
         firma: "",
         clase: "",
         duracion: "",

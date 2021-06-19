@@ -155,7 +155,6 @@
         id="labor"
         required="true"
         v-model="employee.trabajo"
-        disabled
       >
         <option disabled value="">Selecciona una opción</option>
         <option

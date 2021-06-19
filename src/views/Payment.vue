@@ -203,8 +203,11 @@
               </tr>
             </thead>
             <tbody>
+              <!-- <tr v-for="(percepcion, i) in percepciones" :key="i">
+                <td>{{ percepcion.importe }}</td>
+              </tr> -->
               <tr>
-                <td>1231231</td>
+                <td>{{ totalPercepciones }}</td>
               </tr>
             </tbody>
           </table>
@@ -247,7 +250,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>12311</td>
+                <td>{{ totalDeducciones }}</td>
               </tr>
             </tbody>
           </table>
@@ -281,7 +284,48 @@
     <hr class="border border-dark" />
     <div class="row">
       <div class="mx-auto col-md-4 float-md-end me-md-0">
-        <span class="fw-bold text-dark">IMPORTE NETO</span> $ 30002.25
+        <span class="fw-bold text-dark">IMPORTE NETO</span> $ 0
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto col-md-4">
+        <span class="fw-bold text-danger">Percepción aguinaldo</span>
+        {{ percepcionAguinaldo }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto col-md-4">
+        <span class="fw-bold text-danger">Percepción vacaciones</span>
+        {{ percepcionVacaciones }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto col-md-4">
+        <span class="fw-bold text-danger">Fondo de Ahorro</span>
+        {{ fondoAhorro }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto col-md-4">
+        <span class="fw-bold text-danger">Infonavit</span>
+        {{ infonavit }}
+      </div>
+    </div>
+    <div class="row">
+      <span class="fw-bold text-danger">IMSS</span>
+      <div class="mx-auto col-md-12">
+        <span class="fw-bold text-dark">Enfermedad:</span>
+        {{ imssEnfermedad }}
+        <span class="fw-bold text-dark">Prestación:</span>
+        {{ imssPrestacion }}
+        <span class="fw-bold text-dark">Gastos médicos:</span>
+        {{ imssMedicos }}
+        <span class="fw-bold text-dark">Invalidez:</span>
+        {{ imssInvalidez }}
+        <span class="fw-bold text-dark">Vejez:</span>
+        {{ imssVejez }}
+        <span class="fw-bold text-dark">Retención:</span>
+        {{ imssRetencion }}
       </div>
     </div>
   </div>
@@ -306,7 +350,6 @@ export default {
     return {
       API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
       id: this.$route.params.id,
-      factorIntegracion: 1.0452,
       employee: {},
       job: {},
       perceptions: [],
@@ -318,9 +361,27 @@ export default {
       caracteres:
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
       // VARIABLES PARA CALCULOS
-      //Variables para la realización de percepciones.
+      factorIntegracion: 1.0452,
       SMG: 141.7,
       UMA: 89.62,
+      // Variables para la realización de percepciones
+      // Vacaciones
+      diasVacaciones: 6,
+      porcentajeVacaciones: 0.25,
+      // Aguinaldo
+      diasAguinaldo: 15,
+      // Fondo de Ahorro
+      porcentajeAhorro: 0.07,
+      // Variables para la realización de deducciones
+      // Infonavit
+      UMI: 87.21,
+      porcentajeDescuento: 0.21,
+      // IMSS
+      porcentajeEnfermedad: 0.004,
+      porcentajePrestacion: 0.0025,
+      porcentajeMedicos: 0.00375,
+      porcentajeInvalidez: 0.00625,
+      porcentajeVejez: 0.01125,
     };
   },
   mounted() {
@@ -330,20 +391,6 @@ export default {
     this.getDeductions();
   },
   computed: {
-    nominaDias() {
-      let dias = this.employee.tipoNomina;
-      return moment()
-        .subtract(dias, "days")
-        .add(dias, "days")
-        .format("YYYY-MM-DD");
-    },
-    pago() {
-      return moment().add(2, "days").format("YYYY-MM-DD");
-    },
-    inicio() {
-      let dias = this.employee.tipoNomina;
-      return moment().subtract(dias, "days").format("YYYY-MM-DD");
-    },
     generadorFolio() {
       return Math.round(Math.random() * (1000000 - 100) + 1);
     },
@@ -386,6 +433,136 @@ export default {
         );
       }
       return folio;
+    },
+    nominaDias() {
+      let dias = this.employee.tipoNomina;
+      return moment()
+        .subtract(dias, "days")
+        .add(dias, "days")
+        .format("YYYY-MM-DD");
+    },
+    pago() {
+      return moment().add(2, "days").format("YYYY-MM-DD");
+    },
+    inicio() {
+      let dias = this.employee.tipoNomina;
+      return moment().subtract(dias, "days").format("YYYY-MM-DD");
+    },
+    totalPercepciones() {
+      let arreglo = [];
+      let objetoPercepcion = this.percepciones;
+      for (let item of objetoPercepcion) {
+        arreglo.push(item.importe);
+      }
+
+      var totalPercepciones = 0;
+      for (let i in arreglo) {
+        totalPercepciones += arreglo[i];
+      }
+
+      return totalPercepciones;
+    },
+    totalDeducciones() {
+      let arreglo = [];
+      let objetoPercepcion = this.deducciones;
+      for (let item of objetoPercepcion) {
+        arreglo.push(item.importe);
+      }
+
+      var totalDeducciones = 0;
+      for (let i in arreglo) {
+        totalDeducciones += arreglo[i];
+      }
+
+      return totalDeducciones;
+    },
+    percepcionVacaciones() {
+      let exento = this.UMA * 15;
+      let importeVac = this.job.salario * this.diasVacaciones;
+      let primaVac = importeVac * this.porcentajeVacaciones;
+      if (primaVac > exento) {
+        return exento.toFixed(2);
+      } else {
+        return primaVac.toFixed(2);
+      }
+    },
+    percepcionAguinaldo() {
+      let exento = this.UMA * 30;
+      let importeAgui = this.job.salario * this.diasAguinaldo;
+      if (importeAgui > exento) {
+        return exento.toFixed(2);
+      } else {
+        return importeAgui.toFixed(2);
+      }
+    },
+    fondoAhorro() {
+      let ahorro =
+        this.job.salario * this.porcentajeAhorro * this.employee.tipoNomina;
+      return ahorro.toFixed(2);
+    },
+    exentosPeriodo() {
+      // let exentoTotal = this.totalPercepciones +
+    },
+    infonavit() {
+      var diasCotizados = 61;
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let descuentoDiario = salarioIntegrado * this.porcentajeDescuento;
+      let subTotal = diasCotizados * descuentoDiario;
+      let seguroVivienda =
+        (this.employee.tipoNomina / diasCotizados) * diasCotizados;
+      let descuentoInfonavit = subTotal + seguroVivienda;
+      if (this.employee.tipoNomina == 15) {
+        return (descuentoInfonavit / 4).toFixed(2);
+      } else {
+        return (descuentoInfonavit / 9).toFixed(2);
+      }
+    },
+    imssEnfermedad() {
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let UMAImss = this.UMA * 3;
+      if (UMAImss > salarioIntegrado) {
+        return 0;
+      } else {
+        return (
+          (salarioIntegrado - UMAImss) *
+          this.porcentajeEnfermedad *
+          this.employee.tipoNomina
+        ).toFixed(2);
+      }
+    },
+    imssPrestacion() {
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let SMI = salarioIntegrado * this.employee.tipoNomina;
+      let prestacionDinero = SMI * this.porcentajePrestacion;
+      return prestacionDinero.toFixed(2);
+    },
+    imssMedicos() {
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let SMI = salarioIntegrado * this.employee.tipoNomina;
+      let gastosMedicos = SMI * this.porcentajeMedicos;
+      return gastosMedicos.toFixed(2);
+    },
+    imssInvalidez() {
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let SMI = salarioIntegrado * this.employee.tipoNomina;
+      let invalidezVida = SMI * this.porcentajeInvalidez;
+      return invalidezVida.toFixed(2);
+    },
+    imssVejez() {
+      let salarioIntegrado = this.factorIntegracion * this.job.salario;
+      let SMI = salarioIntegrado * this.employee.tipoNomina;
+      let cesantiaVejez = SMI * this.porcentajeVejez;
+      return cesantiaVejez.toFixed(2);
+    },
+    imssRetencion() {
+      var totalImss = 0;
+      totalImss =
+        parseFloat(this.imssEnfermedad) +
+        parseFloat(this.imssPrestacion) +
+        parseFloat(this.imssMedicos) +
+        parseFloat(this.imssInvalidez) +
+        parseFloat(this.imssVejez);
+      return totalImss;
     },
   },
   methods: {

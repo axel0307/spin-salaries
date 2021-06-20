@@ -169,7 +169,35 @@
       </div>
     </div>
     <!-- A partir de aquí se van a agregar todas las percepciones así como también los if -->
+    <h4 class="text-start text-dark">Percepciones</h4>
     <hr class="border border-dark" />
+    <div class="row" v-if="employee.tiempoExtra">
+      <h5 class="text-start text-dark">Horas extra</h5>
+      <div class="mx-auto">
+        <div class="table-responsive-sm">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Clave</th>
+                <th scope="col">Horas Extra</th>
+                <th scope="col">Salario por Hora</th>
+                <th scope="col">Importe exento</th>
+                <th scope="col">Importe gravado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CPEH01</td>
+                <td>{{ employee.horasExtra }}</td>
+                <td>{{ salarioPorHora }}</td>
+                <td>{{ percepcionHorasExtra.exentoHorasExtra }}</td>
+                <td>{{ percepcionHorasExtra.sumaGravadosHE }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     <h5 class="text-start text-dark">Otras percepciones</h5>
     <div class="row">
       <div class="mx-auto">
@@ -483,11 +511,15 @@ export default {
 
       return totalDeducciones;
     },
+    salarioPorHora() {
+      return (this.job.salario / 8).toFixed(2);
+    },
     percepcionHorasExtra() {
       const horaLaboral = this.job.salario / 8;
       const horasExtra = this.employee.horasExtra;
       let horasPagadas;
       const UMATiempoExtra = this.UMA * 5;
+      let sumaGravadosHE;
 
       if (horasExtra > 9) {
         horasPagadas = horaLaboral * 9 * 2;
@@ -510,18 +542,20 @@ export default {
       let excedenteHoras;
       excedenteHoras = horasExtra - 9;
       if (excedenteHoras > 0) {
-        horasTriples = horaLaboral * excedenteHoras * 3;
+        let tercerGravadoHE = (horasTriples = horaLaboral * excedenteHoras * 3);
         segundoGravadoHE = horasPagadas + horasTriples + exentoHorasExtra;
+        sumaGravadosHE = tercerGravadoHE + segundoGravadoHE + gravadoHorasExtra;
       } else {
         segundoGravadoHE = horasPagadas + exentoHorasExtra;
+        sumaGravadosHE = gravadoHorasExtra + segundoGravadoHE;
       }
-      let tercerGravadoHE = horasTriples;
 
       return {
         exentoHorasExtra: exentoHorasExtra,
         gravadoHorasExtra: gravadoHorasExtra,
         segundoGravadoHE: segundoGravadoHE,
-        tercerGravadoHE: tercerGravadoHE,
+        tercerGravadoHE: horasTriples,
+        sumaGravadosHE: sumaGravadosHE,
       };
     },
     percepcionVacaciones() {

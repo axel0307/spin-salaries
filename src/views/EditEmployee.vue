@@ -407,7 +407,10 @@
           <input
             class="mt-0 me-2 form-check-input"
             type="checkbox"
-            v-on:click="mostrarHorasExtras"
+            v-on:click="
+              mostrarHorasExtras();
+              borrarHoras();
+            "
             v-model="employee.tiempoExtra"
             id="tiempoExtra"
           />
@@ -514,6 +517,9 @@ export default {
         document.getElementById("horasExtra").style.display = "none";
         document.getElementById("horasExtra").value = 0;
       }
+    },
+    borrarHoras() {
+      this.employee.horasExtra = 0;
     },
     async getJobs() {
       const user = JSON.parse(localStorage.getItem("user"));

@@ -328,6 +328,12 @@
         {{ imssRetencion }}
       </div>
     </div>
+    <div class="row">
+      <div class="mx-auto col-md-4">
+        <span class="fw-bold text-danger">Horas extra</span>
+        {{ percepcionHorasExtra }}
+      </div>
+    </div>
   </div>
   <button
     type="button"
@@ -435,7 +441,7 @@ export default {
       return folio;
     },
     nominaDias() {
-      let dias = this.employee.tipoNomina;
+      const dias = this.employee.tipoNomina;
       return moment()
         .subtract(dias, "days")
         .add(dias, "days")
@@ -445,7 +451,7 @@ export default {
       return moment().add(2, "days").format("YYYY-MM-DD");
     },
     inicio() {
-      let dias = this.employee.tipoNomina;
+      const dias = this.employee.tipoNomina;
       return moment().subtract(dias, "days").format("YYYY-MM-DD");
     },
     totalPercepciones() {
@@ -455,7 +461,7 @@ export default {
         arreglo.push(item.importe);
       }
 
-      var totalPercepciones = 0;
+      let totalPercepciones = 0;
       for (let i in arreglo) {
         totalPercepciones += arreglo[i];
       }
@@ -469,17 +475,51 @@ export default {
         arreglo.push(item.importe);
       }
 
-      var totalDeducciones = 0;
+      let totalDeducciones = 0;
       for (let i in arreglo) {
         totalDeducciones += arreglo[i];
       }
 
       return totalDeducciones;
     },
+    percepcionHorasExtra() {
+      const horaLaboral = this.job.salario / 8;
+      const horasExtra = this.employee.horasExtra;
+      let horasPagadas;
+      const UMATiempoExtra = this.UMA * 5;
+
+      if (horasExtra > 9) {
+        horasPagadas = horaLaboral * 9 * 2;
+      } else {
+        horasPagadas = horaLaboral * horasExtra * 2;
+      }
+
+      // let excedenteHoras;
+      // excendenteHoras = horasPagadas - 9;
+      // if(excedenteHoras > 0){
+      //   horasTriples = horaLaboral * excedenteHoras * 3;
+      // }
+
+      let exentoHorasExtra;
+      let gravadoHorasExtra;
+      if (horasPagadas * 0.5 > UMATiempoExtra) {
+        exentoHorasExtra = UMATiempoExtra;
+        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
+      } else {
+        exentoHorasExtra = horasPagadas * 0.5;
+        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
+      }
+      return {
+        exentoHorasExtra: exentoHorasExtra,
+        gravadoHorasExtra: gravadoHorasExtra,
+      };
+      // return exentoHorasExtra, gravadoHorasExtra;
+      // return exentoHorasExtra;
+    },
     percepcionVacaciones() {
-      let exento = this.UMA * 15;
-      let importeVac = this.job.salario * this.diasVacaciones;
-      let primaVac = importeVac * this.porcentajeVacaciones;
+      const exento = this.UMA * 15;
+      const importeVac = this.job.salario * this.diasVacaciones;
+      const primaVac = importeVac * this.porcentajeVacaciones;
       if (primaVac > exento) {
         return exento.toFixed(2);
       } else {
@@ -487,8 +527,8 @@ export default {
       }
     },
     percepcionAguinaldo() {
-      let exento = this.UMA * 30;
-      let importeAgui = this.job.salario * this.diasAguinaldo;
+      const exento = this.UMA * 30;
+      const importeAgui = this.job.salario * this.diasAguinaldo;
       if (importeAgui > exento) {
         return exento.toFixed(2);
       } else {
@@ -496,7 +536,7 @@ export default {
       }
     },
     fondoAhorro() {
-      let ahorro =
+      const ahorro =
         this.job.salario * this.porcentajeAhorro * this.employee.tipoNomina;
       return ahorro.toFixed(2);
     },
@@ -504,13 +544,13 @@ export default {
       // let exentoTotal = this.totalPercepciones +
     },
     infonavit() {
-      var diasCotizados = 61;
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let descuentoDiario = salarioIntegrado * this.porcentajeDescuento;
-      let subTotal = diasCotizados * descuentoDiario;
-      let seguroVivienda =
+      const diasCotizados = 61;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const descuentoDiario = salarioIntegrado * this.porcentajeDescuento;
+      const subTotal = diasCotizados * descuentoDiario;
+      const seguroVivienda =
         (this.employee.tipoNomina / diasCotizados) * diasCotizados;
-      let descuentoInfonavit = subTotal + seguroVivienda;
+      const descuentoInfonavit = subTotal + seguroVivienda;
       if (this.employee.tipoNomina == 15) {
         return (descuentoInfonavit / 4).toFixed(2);
       } else {
@@ -518,8 +558,8 @@ export default {
       }
     },
     imssEnfermedad() {
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let UMAImss = this.UMA * 3;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const UMAImss = this.UMA * 3;
       if (UMAImss > salarioIntegrado) {
         return 0;
       } else {
@@ -531,38 +571,38 @@ export default {
       }
     },
     imssPrestacion() {
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let SMI = salarioIntegrado * this.employee.tipoNomina;
-      let prestacionDinero = SMI * this.porcentajePrestacion;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const SMI = salarioIntegrado * this.employee.tipoNomina;
+      const prestacionDinero = SMI * this.porcentajePrestacion;
       return prestacionDinero.toFixed(2);
     },
     imssMedicos() {
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let SMI = salarioIntegrado * this.employee.tipoNomina;
-      let gastosMedicos = SMI * this.porcentajeMedicos;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const SMI = salarioIntegrado * this.employee.tipoNomina;
+      const gastosMedicos = SMI * this.porcentajeMedicos;
       return gastosMedicos.toFixed(2);
     },
     imssInvalidez() {
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let SMI = salarioIntegrado * this.employee.tipoNomina;
-      let invalidezVida = SMI * this.porcentajeInvalidez;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const SMI = salarioIntegrado * this.employee.tipoNomina;
+      const invalidezVida = SMI * this.porcentajeInvalidez;
       return invalidezVida.toFixed(2);
     },
     imssVejez() {
-      let salarioIntegrado = this.factorIntegracion * this.job.salario;
-      let SMI = salarioIntegrado * this.employee.tipoNomina;
-      let cesantiaVejez = SMI * this.porcentajeVejez;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const SMI = salarioIntegrado * this.employee.tipoNomina;
+      const cesantiaVejez = SMI * this.porcentajeVejez;
       return cesantiaVejez.toFixed(2);
     },
     imssRetencion() {
-      var totalImss = 0;
+      let totalImss = 0;
       totalImss =
         parseFloat(this.imssEnfermedad) +
         parseFloat(this.imssPrestacion) +
         parseFloat(this.imssMedicos) +
         parseFloat(this.imssInvalidez) +
         parseFloat(this.imssVejez);
-      return totalImss;
+      return totalImss.toFixed(2);
     },
   },
   methods: {

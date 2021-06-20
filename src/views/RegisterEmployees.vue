@@ -321,6 +321,17 @@
             class="form-check-input"
             type="radio"
             name="horasExtra"
+            id="cero"
+            v-model.number="employee.horasExtra"
+            value="0"
+          />
+          <label class="form-check-label" for="cero">0</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="horasExtra"
             id="dos"
             v-model.number="employee.horasExtra"
             value="2"

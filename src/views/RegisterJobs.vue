@@ -69,7 +69,7 @@
         required="true"
         min="141.7"
         pattern="^\d+\.?\d*$"
-        max="3000"
+        max="1500"
       />
     </div>
     <div class="pb-5 col-12">

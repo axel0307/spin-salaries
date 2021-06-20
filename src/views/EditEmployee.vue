@@ -322,7 +322,7 @@
         />
         <label class="form-check-label">{{ percepcion.nombre }}</label>
       </div>
-      <div for="col-md-4 form-check text-start">
+      <!-- <div for="col-md-4 form-check text-start">
         Horas Extra
         <div class="form-check form-check-inline">
           <input
@@ -340,11 +340,11 @@
             class="form-check-input"
             type="radio"
             name="horasExtra"
-            id="dos"
+            id="tres"
             v-model.number="employee.horasExtra"
-            value="2"
+            value="3"
           />
-          <label class="form-check-label" for="dos">2</label>
+          <label class="form-check-label" for="dos">3</label>
         </div>
         <div class="form-check form-check-inline">
           <input
@@ -401,6 +401,26 @@
           />
           <label class="form-check-label" for="doce">12</label>
         </div>
+      </div> -->
+      <div class="mb-3 input-group">
+        <div class="input-group-text">
+          <input
+            class="mt-0 me-2 form-check-input"
+            type="checkbox"
+            v-on:click="mostrarHorasExtras"
+            v-model="employee.tiempoExtra"
+            id="tiempoExtra"
+          />
+          <label for="tiempoExtra"> Horas extras</label>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          min="0"
+          max="15"
+          id="horasExtra"
+          v-model.number="employee.horasExtra"
+        />
       </div>
     </div>
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
@@ -486,6 +506,14 @@ export default {
   methods: {
     onChangeSelect(e) {
       this.inputDisabled = e.target.value == "Base";
+    },
+    mostrarHorasExtras() {
+      if (document.getElementById("tiempoExtra").checked) {
+        document.getElementById("horasExtra").style.display = "block";
+      } else {
+        document.getElementById("horasExtra").style.display = "none";
+        document.getElementById("horasExtra").value = 0;
+      }
     },
     async getJobs() {
       const user = JSON.parse(localStorage.getItem("user"));

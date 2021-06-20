@@ -25,7 +25,7 @@
         <g id="planet">
           <circle
             fill="none"
-            stroke="#0E0620"
+            stroke="#ffc421"
             stroke-width="3"
             stroke-miterlimit="10"
             cx="572.859"
@@ -36,7 +36,7 @@
           <circle
             id="craterBig"
             fill="none"
-            stroke="#0E0620"
+            stroke="#ffc421"
             stroke-width="3"
             stroke-miterlimit="10"
             cx="548.891"
@@ -47,7 +47,7 @@
           <circle
             id="craterSmall"
             fill="none"
-            stroke="#0E0620"
+            stroke="#ffc421"
             stroke-width="3"
             stroke-miterlimit="10"
             cx="591.743"
@@ -57,7 +57,7 @@
           <path
             id="ring"
             fill="none"
-            stroke="#0E0620"
+            stroke="#ffa703"
             stroke-width="3"
             stroke-linecap="round"
             stroke-miterlimit="10"
@@ -70,7 +70,7 @@
             id="ringShadow"
             opacity="0.5"
             fill="none"
-            stroke="#0E0620"
+            stroke="#f2b544"
             stroke-width="3"
             stroke-linecap="round"
             stroke-miterlimit="10"
@@ -83,7 +83,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -95,7 +95,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -108,7 +108,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -120,7 +120,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -133,7 +133,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -145,7 +145,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -158,7 +158,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -170,7 +170,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -185,7 +185,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -197,7 +197,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -210,7 +210,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -222,7 +222,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -235,7 +235,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -247,7 +247,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -260,7 +260,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -272,7 +272,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -285,7 +285,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -297,7 +297,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -310,7 +310,7 @@
             <g>
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -322,7 +322,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#f45e61"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-miterlimit="10"
@@ -336,7 +336,7 @@
           <g id="circlesBig">
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -347,7 +347,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -358,7 +358,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -369,7 +369,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -380,7 +380,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -391,7 +391,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -402,7 +402,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -413,7 +413,7 @@
 
             <circle
               fill="none"
-              stroke="#0E0620"
+              stroke="#f45e61"
               stroke-width="3"
               stroke-linecap="round"
               stroke-miterlimit="10"
@@ -423,13 +423,13 @@
             />
           </g>
           <g id="circlesSmall">
-            <circle fill="#0E0620" cx="549.879" cy="296.402" r="2.651" />
-            <circle fill="#0E0620" cx="253.29" cy="229.24" r="2.651" />
-            <circle fill="#0E0620" cx="434.824" cy="263.931" r="2.651" />
-            <circle fill="#0E0620" cx="183.708" cy="544.176" r="2.651" />
-            <circle fill="#0E0620" cx="382.515" cy="530.923" r="2.651" />
-            <circle fill="#0E0620" cx="130.693" cy="305.608" r="2.651" />
-            <circle fill="#0E0620" cx="480.296" cy="477.014" r="2.651" />
+            <circle fill="#f45e61" cx="549.879" cy="296.402" r="2.651" />
+            <circle fill="#f45e61" cx="253.29" cy="229.24" r="2.651" />
+            <circle fill="#f45e61" cx="434.824" cy="263.931" r="2.651" />
+            <circle fill="#f45e61" cx="183.708" cy="544.176" r="2.651" />
+            <circle fill="#f45e61" cx="382.515" cy="530.923" r="2.651" />
+            <circle fill="#f45e61" cx="130.693" cy="305.608" r="2.651" />
+            <circle fill="#f45e61" cx="480.296" cy="477.014" r="2.651" />
           </g>
         </g>
         <g id="spaceman" clip-path="url(cordClip)">
@@ -462,7 +462,7 @@
           <g id="antenna">
             <line
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -474,7 +474,7 @@
             />
             <circle
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -487,7 +487,7 @@
           <g id="armR">
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -499,7 +499,7 @@
 
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -513,7 +513,7 @@
           <g id="armL">
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -525,7 +525,7 @@
 
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -539,7 +539,7 @@
           <g id="body">
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -551,7 +551,7 @@
             />
             <path
               fill="none"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -564,7 +564,7 @@
             <g id="legR">
               <path
                 fill="#FFFFFF"
-                stroke="#0E0620"
+                stroke="#427ed4"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -576,7 +576,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#427ed4"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -590,7 +590,7 @@
             <g id="legL">
               <path
                 fill="#FFFFFF"
-                stroke="#0E0620"
+                stroke="#427ed4"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -602,7 +602,7 @@
 
               <line
                 fill="none"
-                stroke="#0E0620"
+                stroke="#427ed4"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -618,7 +618,7 @@
             <ellipse
               transform="matrix(0.259 -0.9659 0.9659 0.259 -51.5445 563.2371)"
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -631,7 +631,7 @@
             <path
               id="headStripe"
               fill="none"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -642,7 +642,7 @@
 
             <path
               fill="#FFFFFF"
-              stroke="#0E0620"
+              stroke="#427ed4"
               stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -656,7 +656,7 @@
               <polygon
                 id="glassShine"
                 fill="none"
-                stroke="#0E0620"
+                stroke="#427ed4"
                 stroke-width="3"
                 stroke-miterlimit="10"
                 points="

@@ -314,7 +314,7 @@
         />
         <label class="form-check-label">{{ percepcion.nombre }}</label>
       </div>
-      <div for="col-md-4 form-check text-start">
+      <!-- <div for="col-md-4 form-check text-start">
         Horas Extra
         <div class="form-check form-check-inline">
           <input
@@ -393,6 +393,26 @@
           />
           <label class="form-check-label" for="doce">12</label>
         </div>
+      </div> -->
+      <div class="mb-3 input-group">
+        <div class="input-group-text">
+          <input
+            class="mt-0 me-2 form-check-input"
+            type="checkbox"
+            v-on:click="mostrarHorasExtras"
+            v-model="employee.tiempoExtra"
+            id="tiempoExtra"
+          />
+          <label for="tiempoExtra"> Horas extras</label>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          min="0"
+          max="15"
+          id="horasExtra"
+          v-model.number="employee.horasExtra"
+        />
       </div>
     </div>
     <h5 class="pb-2 border-2 text-dark border-bottom border-danger text-start">
@@ -516,16 +536,19 @@ export default {
         trabajo: "",
         tipoNomina: "",
         // Arreglar el valor por defecto de las percepciones
-        percepciones: [{ clave: "CPE000", importe: 0, nombre: "Por defecto" }],
+        percepciones: [
+          { clave: "CPE000", importe: 0.01, nombre: "Percepción de sueldo" },
+        ],
         imss: true,
         isr: true,
         infonavit: false,
         fondoAhorro: true,
+        tiempoExtra: false,
         horasExtra: 0,
         primaVacacional: false,
         aguinaldo: false,
         // Arreglar el valor por defecto de las deducciones
-        deducciones: [{ clave: "CDE000", importe: 0, nombre: "Por defecto" }],
+        deducciones: [{ clave: "CDE000", importe: 0.01, nombre: "Otros" }],
         firma: "",
         clase: "",
         duracion: "",
@@ -554,6 +577,14 @@ export default {
   methods: {
     onChangeSelect(e) {
       this.inputDisabled = e.target.value == "Base";
+    },
+    mostrarHorasExtras() {
+      if (document.getElementById("tiempoExtra").checked) {
+        document.getElementById("horasExtra").style.display = "block";
+      } else {
+        document.getElementById("horasExtra").style.display = "none";
+        document.getElementById("horasExtra").value = 0;
+      }
     },
     async getJobs() {
       const user = JSON.parse(localStorage.getItem("user"));

@@ -168,8 +168,9 @@
         </div>
       </div>
     </div>
+    <!-- A partir de aquí se van a agregar todas las percepciones así como también los if -->
     <hr class="border border-dark" />
-    <h5 class="text-start text-dark">Percepciones</h5>
+    <h5 class="text-start text-dark">Otras percepciones</h5>
     <div class="row">
       <div class="mx-auto">
         <div class="table-responsive-sm">
@@ -215,7 +216,7 @@
       </div>
     </div>
     <hr class="border border-dark" />
-    <h5 class="text-start text-dark">Deducciones</h5>
+    <h5 class="text-start text-dark">Otras deducciones</h5>
     <div class="row">
       <div class="mx-auto">
         <div class="table-responsive-sm">
@@ -494,12 +495,6 @@ export default {
         horasPagadas = horaLaboral * horasExtra * 2;
       }
 
-      // let excedenteHoras;
-      // excendenteHoras = horasPagadas - 9;
-      // if(excedenteHoras > 0){
-      //   horasTriples = horaLaboral * excedenteHoras * 3;
-      // }
-
       let exentoHorasExtra;
       let gravadoHorasExtra;
       if (horasPagadas * 0.5 > UMATiempoExtra) {
@@ -509,31 +504,62 @@ export default {
         exentoHorasExtra = horasPagadas * 0.5;
         gravadoHorasExtra = horasPagadas - exentoHorasExtra;
       }
+
+      let horasTriples;
+      let segundoGravadoHE;
+      let excedenteHoras;
+      excedenteHoras = horasExtra - 9;
+      if (excedenteHoras > 0) {
+        horasTriples = horaLaboral * excedenteHoras * 3;
+        segundoGravadoHE = horasPagadas + horasTriples + exentoHorasExtra;
+      } else {
+        segundoGravadoHE = horasPagadas + exentoHorasExtra;
+      }
+      let tercerGravadoHE = horasTriples;
+
       return {
         exentoHorasExtra: exentoHorasExtra,
         gravadoHorasExtra: gravadoHorasExtra,
+        segundoGravadoHE: segundoGravadoHE,
+        tercerGravadoHE: tercerGravadoHE,
       };
-      // return exentoHorasExtra, gravadoHorasExtra;
-      // return exentoHorasExtra;
     },
     percepcionVacaciones() {
       const exento = this.UMA * 15;
       const importeVac = this.job.salario * this.diasVacaciones;
       const primaVac = importeVac * this.porcentajeVacaciones;
+
+      let exentoVacaciones;
+      let gravadoVacaciones;
       if (primaVac > exento) {
-        return exento.toFixed(2);
+        exentoVacaciones = exento.toFixed(2);
       } else {
-        return primaVac.toFixed(2);
+        exentoVacaciones = primaVac.toFixed(2);
       }
+      gravadoVacaciones = (primaVac - exentoVacaciones).toFixed(2);
+
+      return {
+        exentoVacaciones: exentoVacaciones,
+        gravadoVacaciones: gravadoVacaciones,
+      };
     },
     percepcionAguinaldo() {
       const exento = this.UMA * 30;
       const importeAgui = this.job.salario * this.diasAguinaldo;
+
+      let exentoAguinaldo;
+      let gravadoAguinaldo;
       if (importeAgui > exento) {
-        return exento.toFixed(2);
+        exentoAguinaldo = exento.toFixed(2);
       } else {
-        return importeAgui.toFixed(2);
+        exentoAguinaldo = importeAgui.toFixed(2);
       }
+      gravadoAguinaldo = importeAgui - exentoAguinaldo;
+
+      return {
+        exentoAguinaldo: exentoAguinaldo,
+        gravadoAguinaldo: gravadoAguinaldo,
+      };
     },
     fondoAhorro() {
       const ahorro =

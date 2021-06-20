@@ -32,14 +32,25 @@
         <option value="Contabilidad y Auditoría">
           Contabilidad y Auditoría
         </option>
-        <option value="Marketing (o Mercadeo)">Marketing (o Mercadeo)</option>
-        <option value="Biblioteca/Archivo">Biblioteca/Archivo</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Biblioteca/Archivo">Biblioteca / Archivo</option>
+        <option value="Mercadeo">Mercadeo</option>
         <option value="Relaciones Públicas">Relaciones Públicas</option>
-        <option value="Consultoría y Tesorería">Consultoría y Tesorería</option>
+        <option value="Consultoría">Consultoría</option>
+        <option value="Reclutamiento">Reclutamiento</option>
+        <option value="Tesorería">Tesorería</option>
+        <option value="Recursos Humanos">Recursos Humanos</option>
         <option value="Gerencia y Administración">
           Gerencia y Administración
         </option>
-        <option value="Producción y Ventas">Producción y Ventas</option>
+        <option value="Producción">Producción</option>
+        <option value="Mantenimiento y Limpieza">
+          Mantenimiento y Limpieza
+        </option>
+        <option value="Feedback y Monitorización">
+          Feedback y Monitorización
+        </option>
+        <option value="Ventas">Ventas</option>
       </select>
     </div>
     <div class="col-md-3">

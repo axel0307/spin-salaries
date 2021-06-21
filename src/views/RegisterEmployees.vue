@@ -314,86 +314,6 @@
         />
         <label class="form-check-label">{{ percepcion.nombre }}</label>
       </div>
-      <!-- <div for="col-md-4 form-check text-start">
-        Horas Extra
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="cero"
-            v-model.number="employee.horasExtra"
-            value="0"
-          />
-          <label class="form-check-label" for="cero">0</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="dos"
-            v-model.number="employee.horasExtra"
-            value="2"
-          />
-          <label class="form-check-label" for="dos">2</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="cuatro"
-            v-model.number="employee.horasExtra"
-            value="4"
-          />
-          <label class="form-check-label" for="cuatro">4</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="seis"
-            v-model.number="employee.horasExtra"
-            value="6"
-          />
-          <label class="form-check-label" for="seis">6</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="ocho"
-            v-model.number="employee.horasExtra"
-            value="8"
-          />
-          <label class="form-check-label" for="ocho">8</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="diez"
-            v-model.number="employee.horasExtra"
-            value="10"
-          />
-          <label class="form-check-label" for="diez">10</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="horasExtra"
-            id="doce"
-            v-model.number="employee.horasExtra"
-            value="12"
-          />
-          <label class="form-check-label" for="doce">12</label>
-        </div>
-      </div> -->
       <div class="mb-3 input-group">
         <div class="input-group-text">
           <input
@@ -411,7 +331,7 @@
         <input
           type="number"
           class="form-control"
-          min="0"
+          min="1"
           max="15"
           id="horasExtra"
           v-model.number="employee.horasExtra"

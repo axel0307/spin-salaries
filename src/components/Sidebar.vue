@@ -1,40 +1,40 @@
 <template>
-  <div class="d-flex flex-fill flex-grow-1 px-0 h-100">
+  <div class="px-0 d-flex flex-fill flex-grow-1 h-100">
     <div
-      class="bg-light shadow-sm mb-0 bg-body rounded d-none d-lg-block"
+      class="mb-0 rounded shadow-sm bg-light bg-body d-none d-lg-block"
       style="min-width: 210px; min-height: 76.5vh"
     >
       <router-link
         to="/dashboard/welcome"
-        class="d-flex pb-3 my-3 link-dark text-decoration-none border-bottom text-center"
+        class="pb-3 my-3 text-center  d-flex link-dark text-decoration-none border-bottom"
       >
-        <span class="fs-5 fw-semibold mx-auto">Spire Admin</span>
+        <span class="mx-auto fs-5 fw-semibold">Spire Admin</span>
       </router-link>
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
           <button
-            class="btn btn-toggle rounded collapsed"
+            class="rounded btn btn-toggle collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#dashboard"
             aria-expanded="false"
           >
             <i
-              class="bi bi-people-fill icon-size text-danger align-middle mx-1"
+              class="mx-1 align-middle bi bi-people-fill icon-size text-danger"
             ></i
             >Empleados
           </button>
           <div class="collapse" id="dashboard">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="pb-1 btn-toggle-nav list-unstyled fw-normal small">
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/listemployees"
                   >Ver empleados</router-link
                 >
               </li>
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/registeremployees"
                   >Registrar nuevo empleado</router-link
                 >
@@ -45,24 +45,24 @@
 
         <li class="mb-1">
           <button
-            class="btn btn-toggle rounded collapsed"
+            class="rounded btn btn-toggle collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#dashboard-collapse"
             aria-expanded="false"
           >
-            <i class="bi bi-wrench icon-size text-danger align-middle mx-1"></i
+            <i class="mx-1 align-middle bi bi-wrench icon-size text-danger"></i
             >Puestos de trabajo
           </button>
           <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="pb-1 btn-toggle-nav list-unstyled fw-normal small">
               <li>
-                <router-link class="link-dark rounded" to="/dashboard/listjobs"
+                <router-link class="rounded link-dark" to="/dashboard/listjobs"
                   >Ver puestos de trabajo</router-link
                 >
               </li>
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/registerjobs"
                   >Registrar nuevo puesto</router-link
                 >
@@ -72,26 +72,26 @@
         </li>
         <li class="mb-1">
           <button
-            class="btn btn-toggle rounded collapsed"
+            class="rounded btn btn-toggle collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#orders-collapse"
             aria-expanded="false"
           >
-            <i class="bi bi-wallet icon-size text-danger align-middle mx-1"></i
+            <i class="mx-1 align-middle bi bi-wallet icon-size text-danger"></i
             >Percepciones
           </button>
           <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="pb-1 btn-toggle-nav list-unstyled fw-normal small">
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/listperceptions"
                   >Ver percepciones</router-link
                 >
               </li>
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/registerperceptions"
                   >Registrar nueva percepción</router-link
                 >
@@ -101,28 +101,28 @@
         </li>
         <li class="mb-1">
           <button
-            class="btn btn-toggle rounded collapsed"
+            class="rounded btn btn-toggle collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#account-collapse"
             aria-expanded="false"
           >
             <i
-              class="bi bi-ui-checks icon-size text-danger align-middle mx-1"
+              class="mx-1 align-middle bi bi-ui-checks icon-size text-danger"
             ></i
             >Deducciones
           </button>
           <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="pb-1 btn-toggle-nav list-unstyled fw-normal small">
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/listdeductions"
                   >Ver deducciones</router-link
                 >
               </li>
               <li>
                 <router-link
-                  class="link-dark rounded"
+                  class="rounded link-dark"
                   to="/dashboard/registerdeductions"
                   >Registrar nueva deducción</router-link
                 >
@@ -131,12 +131,12 @@
           </div>
         </li>
 
-        <li class="border-top my-3"></li>
+        <li class="my-3 border-top"></li>
         <router-link
           to="/"
           @click="cerrarSesion"
-          class="fw-bold list-group-item list-group-item-action border-0"
-          ><i class="bi bi-power icon-size text-danger align-middle mx-1"></i>
+          class="border-0 fw-bold list-group-item list-group-item-action"
+          ><i class="mx-1 align-middle bi bi-power icon-size text-danger"></i>
           Cerrar Sesión</router-link
         >
       </ul>
@@ -160,28 +160,10 @@ export default {
   font-size: 1.2rem;
 }
 
-.b-example-divider {
-  width: 1.5rem;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: solid rgba(0, 0, 0, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-}
-
 .bi {
   vertical-align: -0.125em;
   pointer-events: none;
   fill: currentColor;
-}
-
-.dropdown-toggle {
-  outline: 0;
-}
-
-.nav-flush .nav-link {
-  border-radius: 0;
 }
 
 .btn-toggle {
@@ -193,6 +175,7 @@ export default {
   background-color: transparent;
   border: 0;
 }
+
 .btn-toggle:hover,
 .btn-toggle:focus {
   color: rgba(0, 0, 0, 0.85);
@@ -210,6 +193,7 @@ export default {
 .btn-toggle[aria-expanded="true"] {
   color: rgba(0, 0, 0, 0.85);
 }
+
 .btn-toggle[aria-expanded="true"]::before {
   transform: rotate(90deg);
 }
@@ -221,6 +205,7 @@ export default {
   margin-left: 1.25rem;
   text-decoration: none;
 }
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #d2f4ea;

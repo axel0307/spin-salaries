@@ -169,7 +169,6 @@
         </div>
       </div>
     </div>
-    <!-- A partir de aquí se van a agregar todas las percepciones así como también los if -->
     <h4 class="text-start text-dark">Percepciones</h4>
     <hr class="border border-dark" />
     <div class="row">
@@ -219,16 +218,16 @@
                 <td>CPEHEX</td>
                 <td>{{ employee.horasExtra }}</td>
                 <td>{{ salarioPorHora }}</td>
-                <td>{{ percepcionHorasExtra.importeTotalHE }}</td>
-                <td>{{ percepcionHorasExtra.exentoHorasExtra }}</td>
-                <td>{{ percepcionHorasExtra.gravadoTotalHE }}</td>
+                <td>{{ percepcionHorasExtra().importeTotalHE }}</td>
+                <td>{{ percepcionHorasExtra().exentoHorasExtra }}</td>
+                <td>{{ percepcionHorasExtra().gravadoTotalHE }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="employee.primaVacacional">
       <h5 class="text-start text-dark">Prima Vacacional</h5>
       <div class="mx-auto">
         <div class="table-responsive-sm">
@@ -246,16 +245,16 @@
               <tr>
                 <td>CPEPVA</td>
                 <td>1</td>
-                <td>{{ percepcionVacaciones.importeVacaciones }}</td>
-                <td>{{ percepcionVacaciones.exentoVacaciones }}</td>
-                <td>{{ percepcionVacaciones.gravadoVacaciones }}</td>
+                <td>{{ percepcionVacaciones().importeVacaciones }}</td>
+                <td>{{ percepcionVacaciones().exentoVacaciones }}</td>
+                <td>{{ percepcionVacaciones().gravadoVacaciones }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="employee.aguinaldo">
       <h5 class="text-start text-dark">Aguinaldo</h5>
       <div class="mx-auto">
         <div class="table-responsive-sm">
@@ -273,9 +272,9 @@
               <tr>
                 <td>CPEAGU</td>
                 <td>15</td>
-                <td>{{ percepcionAguinaldo.importeAguinaldo }}</td>
-                <td>{{ percepcionAguinaldo.exentoAguinaldo }}</td>
-                <td>{{ percepcionAguinaldo.gravadoAguinaldo }}</td>
+                <td>{{ percepcionAguinaldo().importeAguinaldo }}</td>
+                <td>{{ percepcionAguinaldo().exentoAguinaldo }}</td>
+                <td>{{ percepcionAguinaldo().gravadoAguinaldo }}</td>
               </tr>
             </tbody>
           </table>
@@ -305,7 +304,7 @@
         </div>
       </div>
     </div>
-    <h6 class="text-start text-dark">Total otras percepciones</h6>
+    <h6 class="text-start text-dark">Total percepciones</h6>
     <div class="row">
       <div class="mx-auto col-md-3 float-md-start ms-md-0">
         <div class="table-responsive-sm">
@@ -316,11 +315,8 @@
               </tr>
             </thead>
             <tbody>
-              <!-- <tr v-for="(percepcion, i) in percepciones" :key="i">
-                <td>{{ percepcion.importe }}</td>
-              </tr> -->
               <tr>
-                <td>{{ totalOtrasPercepciones }}</td>
+                <td>{{ totalPercepciones }}</td>
               </tr>
             </tbody>
           </table>
@@ -391,7 +387,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="employee.infonavit">
       <h5 class="text-start text-dark">Infonavit</h5>
       <div class="mx-auto">
         <div class="table-responsive-sm">
@@ -417,10 +413,10 @@
                 <td>{{ salarioDiarioIntegral }}</td>
                 <td>{{ employee.tipoNomina }}</td>
                 <td>21%</td>
-                <td>{{ infonavit.descuentoDiario }}</td>
-                <td>{{ infonavit.subTotal }}</td>
-                <td>{{ infonavit.descuentoInfonavit }}</td>
-                <td>{{ infonavit.descuentoInfonavitNomina }}</td>
+                <td>{{ infonavit().descuentoDiario }}</td>
+                <td>{{ infonavit().subTotal }}</td>
+                <td>{{ infonavit().descuentoInfonavit }}</td>
+                <td>{{ infonavit().descuentoInfonavitNomina }}</td>
               </tr>
             </tbody>
           </table>
@@ -450,7 +446,7 @@
         </div>
       </div>
     </div>
-    <h6 class="text-start text-dark">Total otras deducciones</h6>
+    <h6 class="text-start text-dark">Total deducciones</h6>
     <div class="row">
       <div class="mx-auto col-md-3 float-md-start ms-md-0">
         <div class="table-responsive-sm">
@@ -462,7 +458,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ totalOtrasDeducciones }}</td>
+                <td>{{ totalDeducciones }}</td>
               </tr>
             </tbody>
           </table>
@@ -485,8 +481,8 @@
             <tbody>
               <tr>
                 <td>{{ salarioTotalEmpleado }}</td>
-                <td>{{ totalNetoPercepciones }}</td>
-                <td>{{ totalNetoDeducciones }}</td>
+                <td>{{ totalPercepciones }}</td>
+                <td>{{ totalDeducciones }}</td>
               </tr>
             </tbody>
           </table>
@@ -503,13 +499,13 @@
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Percepción aguinaldo</span>
-        {{ percepcionAguinaldo }}
+        <!-- {{ percepcionAguinaldo }} -->
       </div>
     </div>
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Percepción vacaciones</span>
-        {{ percepcionVacaciones }}
+        <!-- {{ percepcionVacaciones }} -->
       </div>
     </div>
     <div class="row">
@@ -521,7 +517,7 @@
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Infonavit</span>
-        {{ infonavit }}
+        <!-- {{ infonavit }} -->
       </div>
     </div>
     <div class="row">
@@ -544,7 +540,7 @@
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Horas extra</span>
-        {{ percepcionHorasExtra }}
+        <!-- {{ percepcionHorasExtra() }} -->
       </div>
     </div>
     <div class="row">
@@ -562,7 +558,7 @@
   </div>
   <button
     type="button"
-    class="mt-2 mb-3 btn btn-outline-primary"
+    class="mt-2 mb-3 btn btn-outline-danger"
     @click="download"
   >
     Pagar nómina
@@ -692,144 +688,48 @@ export default {
     salarioDiarioIntegral() {
       return (this.job.salario * this.factorIntegracion).toFixed(2);
     },
-    totalOtrasPercepciones() {
-      let arreglo = [];
-      let objetoPercepcion = this.percepciones;
-      for (let item of objetoPercepcion) {
-        arreglo.push(item.importe);
-      }
-
-      let totalPercepciones = 0;
-      for (let i in arreglo) {
-        totalPercepciones += arreglo[i];
-      }
-
-      return totalPercepciones;
-    },
-    totalOtrasDeducciones() {
-      let arreglo = [];
-      let objetoPercepcion = this.deducciones;
-      for (let item of objetoPercepcion) {
-        arreglo.push(item.importe);
-      }
-
-      let totalDeducciones = 0;
-      for (let i in arreglo) {
-        totalDeducciones += arreglo[i];
-      }
-
-      return totalDeducciones;
-    },
     percepcionFondoAhorro() {
       const ahorro =
         this.job.salario * this.porcentajeAhorro * this.employee.tipoNomina;
       return ahorro.toFixed(2);
     },
-    percepcionHorasExtra() {
-      const horaLaboral = this.job.salario / 8;
-      const horasExtra = this.employee.horasExtra;
-      let horasPagadas;
-      const UMATiempoExtra = this.UMA * 5;
-      let sumaGravadosHE;
-      let importeTotalHE;
-
-      if (horasExtra > 9) {
-        horasPagadas = horaLaboral * 9 * 2;
-      } else {
-        horasPagadas = horaLaboral * horasExtra * 2;
-      }
-
-      let exentoHorasExtra;
-      let gravadoHorasExtra;
-      if (horasPagadas * 0.5 > UMATiempoExtra) {
-        exentoHorasExtra = UMATiempoExtra.toFixed(2);
-        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
-      } else {
-        exentoHorasExtra = (Number(horasPagadas) * Number(0.5)).toFixed(2);
-        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
-      }
-
-      let horasTriples;
-      let segundoGravadoHE;
-      let excedenteHoras;
-      excedenteHoras = horasExtra - 9;
-      if (excedenteHoras > 0) {
-        let tercerGravadoHE = (horasTriples = horaLaboral * excedenteHoras * 3);
-        segundoGravadoHE = horasPagadas + horasTriples + exentoHorasExtra;
-        sumaGravadosHE = tercerGravadoHE + segundoGravadoHE + gravadoHorasExtra;
-      } else {
-        segundoGravadoHE = horasPagadas + exentoHorasExtra;
-        sumaGravadosHE = gravadoHorasExtra + segundoGravadoHE;
-      }
-
-      importeTotalHE = (
-        Number(horasPagadas) -
-        Number(exentoHorasExtra) +
-        Number(horasTriples) +
-        Number(exentoHorasExtra)
-      ).toFixed(2);
-
-      let gravadoTotalHE;
-      gravadoTotalHE = (importeTotalHE - exentoHorasExtra).toFixed(2);
-
-      return {
-        exentoHorasExtra: exentoHorasExtra,
-        // gravadoHorasExtra: gravadoHorasExtra,
-        // segundoGravadoHE: segundoGravadoHE,
-        // tercerGravadoHE: horasTriples,
-        // sumaGravadosHE: sumaGravadosHE,
-        importeTotalHE: importeTotalHE,
-        gravadoTotalHE: gravadoTotalHE,
-      };
-    },
-    percepcionVacaciones() {
-      const exento = this.UMA * 15;
-      const importeVac = this.job.salario * this.diasVacaciones;
-      const primaVac = importeVac * this.porcentajeVacaciones;
-
-      let exentoVacaciones;
-      let gravadoVacaciones;
-      if (primaVac > exento) {
-        exentoVacaciones = exento.toFixed(2);
-      } else {
-        exentoVacaciones = primaVac.toFixed(2);
-      }
-      gravadoVacaciones = (primaVac - exentoVacaciones).toFixed(2);
-
-      return {
-        importeVacaciones: primaVac.toFixed(2),
-        exentoVacaciones: exentoVacaciones,
-        gravadoVacaciones: gravadoVacaciones,
-      };
-    },
-    percepcionAguinaldo() {
-      const exento = this.UMA * 30;
-      const importeAgui = this.job.salario * this.diasAguinaldo;
-
-      let exentoAguinaldo;
-      let gravadoAguinaldo;
-      if (importeAgui > exento) {
-        exentoAguinaldo = exento.toFixed(2);
-      } else {
-        exentoAguinaldo = importeAgui.toFixed(2);
-      }
-      gravadoAguinaldo = (importeAgui - exentoAguinaldo).toFixed(2);
-
-      return {
-        importeAguinaldo: importeAgui.toFixed(2),
-        exentoAguinaldo: exentoAguinaldo,
-        gravadoAguinaldo: gravadoAguinaldo,
-      };
-    },
     gravadoPeriodo() {
       let gravadoTotal;
-      gravadoTotal = (
-        Number(this.salarioTotalEmpleado) +
-        Number(this.percepcionHorasExtra.gravadoTotalHE) +
-        Number(this.percepcionAguinaldo.gravadoAguinaldo) +
-        Number(this.percepcionVacaciones.gravadoVacaciones)
-      ).toFixed(2);
-      return gravadoTotal;
+      let salarioEmpleado = parseFloat(this.salarioTotalEmpleado);
+      let horasExtras;
+      let aguinaldoExtra;
+      let vacacionesExtra;
+      // Se valida primero si hay horas extras
+      if (this.employee.tiempoExtra == true) {
+        horasExtras = parseFloat(this.percepcionHorasExtra().gravadoTotalHE);
+      } else {
+        horasExtras = 0;
+      }
+
+      // Se valida después si hay prima vacacional
+      if (this.employee.primaVacacional == true) {
+        vacacionesExtra = parseFloat(
+          this.percepcionVacaciones().gravadoVacaciones
+        );
+      } else {
+        vacacionesExtra = 0;
+      }
+
+      // Por último se valida el aguinaldo
+      if (this.employee.aguinaldo == true) {
+        aguinaldoExtra = parseFloat(
+          this.percepcionAguinaldo().gravadoAguinaldo
+        );
+      } else {
+        aguinaldoExtra = 0;
+      }
+
+      return (gravadoTotal = (
+        salarioEmpleado +
+        horasExtras +
+        aguinaldoExtra +
+        vacacionesExtra
+      ).toFixed(2));
     },
     isrPeriodo() {
       const gravado = this.gravadoPeriodo;
@@ -891,27 +791,6 @@ export default {
         limiteInferior: limiteInferior,
       };
     },
-    infonavit() {
-      const diasCotizados = 61;
-      const salarioIntegrado = this.factorIntegracion * this.job.salario;
-      const descuentoDiario = salarioIntegrado * this.porcentajeDescuento;
-      const subTotal = diasCotizados * descuentoDiario;
-      const seguroVivienda =
-        (this.employee.tipoNomina / diasCotizados) * diasCotizados;
-      const descuentoInfonavit = subTotal + seguroVivienda;
-      let descuentoInfonavitNomina;
-      if (this.employee.tipoNomina == 15) {
-        descuentoInfonavitNomina = (descuentoInfonavit / 4).toFixed(2);
-      } else {
-        descuentoInfonavitNomina = (descuentoInfonavit / 9).toFixed(2);
-      }
-      return {
-        descuentoDiario: descuentoDiario.toFixed(2),
-        subTotal: subTotal.toFixed(2),
-        descuentoInfonavit: descuentoInfonavit.toFixed(2),
-        descuentoInfonavitNomina: descuentoInfonavitNomina,
-      };
-    },
     imssSMI() {
       const salarioIntegrado = this.factorIntegracion * this.job.salario;
       const SMI = salarioIntegrado * this.employee.tipoNomina;
@@ -964,32 +843,153 @@ export default {
         parseFloat(this.imssVejez);
       return totalImss.toFixed(2);
     },
-    totalNetoPercepciones() {
-      let totalNetoPercepciones;
-      totalNetoPercepciones =
-        parseFloat(this.percepcionFondoAhorro) +
-        parseFloat(this.totalOtrasPercepciones) +
-        parseFloat(this.percepcionHorasExtra.importeTotalHE) +
-        parseFloat(this.percepcionVacaciones.importeVacaciones) +
-        parseFloat(this.percepcionAguinaldo.importeAguinaldo);
-      return totalNetoPercepciones.toFixed(2);
+    // totalNetoPercepciones() {
+    //   let totalNetoPercepciones;
+    //   let fondoAhorroTotal = parseFloat(this.percepcionFondoAhorro);
+    //   let otrasPercepcionesTotal = parseFloat(this.totalPercepciones);
+    //   let horasExtrasTotal;
+    //   let vacacionesExtraTotal;
+    //   let aguinaldoExtraTotal;
+    //   // Se valida primero si hay horas extras
+    //   if (this.employee.tiempoExtra == true) {
+    //     horasExtrasTotal = parseFloat(
+    //       this.percepcionHorasExtra().importeTotalHE
+    //     );
+    //   } else {
+    //     horasExtrasTotal = 0;
+    //   }
+
+    //   // Se valida después si hay prima vacacional
+    //   if (this.employee.primaVacacional == true) {
+    //     vacacionesExtraTotal = parseFloat(
+    //       this.percepcionVacaciones().importeVacaciones
+    //     );
+    //   } else {
+    //     vacacionesExtraTotal = 0;
+    //   }
+
+    //   // Por último se valida el aguinaldo
+    //   if (this.employee.aguinaldo == true) {
+    //     aguinaldoExtraTotal = parseFloat(
+    //       this.percepcionAguinaldo().importeAguinaldo
+    //     );
+    //   } else {
+    //     aguinaldoExtraTotal = 0;
+    //   }
+
+    //   totalNetoPercepciones =
+    //     fondoAhorroTotal +
+    //     otrasPercepcionesTotal +
+    //     horasExtrasTotal +
+    //     vacacionesExtraTotal +
+    //     aguinaldoExtraTotal;
+    //   return totalNetoPercepciones.toFixed(2);
+    // },
+    // totalNetoDeducciones() {
+    //   let totalNetoDeducciones;
+    //   let otrasDeducciones = parseFloat(this.totalDeducciones);
+    //   let isrTotal = parseFloat(this.isrPeriodo.isrCalculado);
+    //   let imssTotal = parseFloat(this.imssRetencion);
+    //   let infonavitTotal;
+
+    //   if (this.employee.infonavit == true) {
+    //     infonavitTotal = parseFloat(this.infonavit().descuentoInfonavitNomina);
+    //   } else {
+    //     infonavitTotal = 0;
+    //   }
+
+    //   totalNetoDeducciones =
+    //     otrasDeducciones + isrTotal + imssTotal + infonavitTotal;
+    //   return totalNetoDeducciones.toFixed(2);
+    // },
+
+    // Hacer un metodo que calcule las percepciones que vengan de la base de datos, pero solo para mostrar en pantalla
+    totalPercepciones() {
+      let arreglo = [];
+      let objetoPercepcion = this.percepciones;
+      for (let item of objetoPercepcion) {
+        arreglo.push(item.importe);
+      }
+
+      let totalPercepciones = 0;
+      for (let i in arreglo) {
+        totalPercepciones += arreglo[i];
+      }
+
+      let masPercepciones = 0;
+      let fondoAhorroTotal = parseFloat(this.percepcionFondoAhorro);
+      let horasExtrasTotal;
+      let vacacionesExtraTotal;
+      let aguinaldoExtraTotal;
+
+      // Se valida primero si hay horas extras
+      if (this.employee.tiempoExtra == true) {
+        horasExtrasTotal = parseFloat(
+          this.percepcionHorasExtra().importeTotalHE
+        );
+      } else {
+        horasExtrasTotal = 0;
+      }
+
+      // Se valida después si hay prima vacacional
+      if (this.employee.primaVacacional == true) {
+        vacacionesExtraTotal = parseFloat(
+          this.percepcionVacaciones().importeVacaciones
+        );
+      } else {
+        vacacionesExtraTotal = 0;
+      }
+
+      // Por último se valida el aguinaldo
+      if (this.employee.aguinaldo == true) {
+        aguinaldoExtraTotal = parseFloat(
+          this.percepcionAguinaldo().importeAguinaldo
+        );
+      } else {
+        aguinaldoExtraTotal = 0;
+      }
+
+      masPercepciones =
+        totalPercepciones +
+        fondoAhorroTotal +
+        horasExtrasTotal +
+        vacacionesExtraTotal +
+        aguinaldoExtraTotal;
+      return masPercepciones.toFixed(2);
     },
-    totalNetoDeducciones() {
-      let totalNetoDeducciones;
-      totalNetoDeducciones =
-        parseFloat(this.totalOtrasDeducciones) +
-        parseFloat(this.isrPeriodo.isrCalculado) +
-        parseFloat(this.imssRetencion) +
-        parseFloat(this.infonavit.descuentoInfonavitNomina);
-      return totalNetoDeducciones.toFixed(2);
+    totalDeducciones() {
+      let arreglo = [];
+      let objetoPercepcion = this.deducciones;
+      for (let item of objetoPercepcion) {
+        arreglo.push(item.importe);
+      }
+
+      let totalDeducciones = 0;
+      for (let i in arreglo) {
+        totalDeducciones += arreglo[i];
+      }
+
+      let masDeducciones;
+      let isrTotal = parseFloat(this.isrPeriodo.isrCalculado);
+      let imssTotal = parseFloat(this.imssRetencion);
+      let infonavitTotal;
+
+      if (this.employee.infonavit == true) {
+        infonavitTotal = parseFloat(this.infonavit().descuentoInfonavitNomina);
+      } else {
+        infonavitTotal = 0;
+      }
+
+      masDeducciones = totalDeducciones + isrTotal + imssTotal + infonavitTotal;
+      return masDeducciones.toFixed(2);
     },
     totalNetoNomina() {
       let totalNetoNomina;
       totalNetoNomina =
         parseFloat(this.salarioTotalEmpleado) +
-        parseFloat(this.totalNetoPercepciones) -
-        parseFloat(this.totalNetoDeducciones);
-      return totalNetoNomina;
+        parseFloat(this.totalPercepciones) -
+        parseFloat(this.totalDeducciones);
+      return totalNetoNomina.toFixed(2);
     },
   },
   methods: {
@@ -1061,6 +1061,125 @@ export default {
         });
         this.deducciones = data;
       }
+    },
+    // Métodos para el cálculo de la nómina
+    percepcionHorasExtra() {
+      const horaLaboral = this.job.salario / 8;
+      const horasExtra = this.employee.horasExtra;
+      let horasPagadas;
+      const UMATiempoExtra = this.UMA * 5;
+      let sumaGravadosHE;
+      let importeTotalHE;
+
+      if (horasExtra > 9) {
+        horasPagadas = horaLaboral * 9 * 2;
+      } else {
+        horasPagadas = horaLaboral * horasExtra * 2;
+      }
+
+      let exentoHorasExtra;
+      let gravadoHorasExtra;
+      if (horasPagadas * 0.5 > UMATiempoExtra) {
+        exentoHorasExtra = UMATiempoExtra.toFixed(2);
+        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
+      } else {
+        exentoHorasExtra = (Number(horasPagadas) * Number(0.5)).toFixed(2);
+        gravadoHorasExtra = horasPagadas - exentoHorasExtra;
+      }
+
+      let tercerGravadoHE;
+      let segundoGravadoHE;
+      let excedenteHoras;
+      excedenteHoras = horasExtra - 9;
+      if (excedenteHoras > 0) {
+        tercerGravadoHE = horaLaboral * excedenteHoras * 3;
+        segundoGravadoHE = horasPagadas + tercerGravadoHE + exentoHorasExtra;
+        sumaGravadosHE = tercerGravadoHE + segundoGravadoHE + gravadoHorasExtra;
+      } else {
+        segundoGravadoHE = horasPagadas + exentoHorasExtra;
+        sumaGravadosHE = gravadoHorasExtra + segundoGravadoHE;
+        tercerGravadoHE = 0;
+      }
+
+      importeTotalHE = (
+        Number(horasPagadas) -
+        Number(exentoHorasExtra) +
+        Number(tercerGravadoHE) +
+        Number(exentoHorasExtra)
+      ).toFixed(2);
+
+      let gravadoTotalHE;
+      gravadoTotalHE = (importeTotalHE - exentoHorasExtra).toFixed(2);
+
+      return {
+        exentoHorasExtra: exentoHorasExtra,
+        // gravadoHorasExtra: gravadoHorasExtra,
+        // segundoGravadoHE: segundoGravadoHE,
+        // tercerGravadoHE: horasTriples,
+        // sumaGravadosHE: sumaGravadosHE,
+        importeTotalHE: importeTotalHE,
+        gravadoTotalHE: gravadoTotalHE,
+      };
+    },
+    percepcionVacaciones() {
+      const exento = this.UMA * 15;
+      const importeVac = this.job.salario * this.diasVacaciones;
+      const primaVac = importeVac * this.porcentajeVacaciones;
+
+      let exentoVacaciones;
+      let gravadoVacaciones;
+      if (primaVac > exento) {
+        exentoVacaciones = exento.toFixed(2);
+      } else {
+        exentoVacaciones = primaVac.toFixed(2);
+      }
+      gravadoVacaciones = (primaVac - exentoVacaciones).toFixed(2);
+
+      return {
+        importeVacaciones: primaVac.toFixed(2),
+        exentoVacaciones: exentoVacaciones,
+        gravadoVacaciones: gravadoVacaciones,
+      };
+    },
+    percepcionAguinaldo() {
+      const exento = this.UMA * 30;
+      const importeAgui = this.job.salario * this.diasAguinaldo;
+
+      let exentoAguinaldo;
+      let gravadoAguinaldo;
+      if (importeAgui > exento) {
+        exentoAguinaldo = exento.toFixed(2);
+      } else {
+        exentoAguinaldo = importeAgui.toFixed(2);
+      }
+      gravadoAguinaldo = (importeAgui - exentoAguinaldo).toFixed(2);
+
+      return {
+        importeAguinaldo: importeAgui.toFixed(2),
+        exentoAguinaldo: exentoAguinaldo,
+        gravadoAguinaldo: gravadoAguinaldo,
+      };
+    },
+    infonavit() {
+      const diasCotizados = 61;
+      const salarioIntegrado = this.factorIntegracion * this.job.salario;
+      const descuentoDiario = salarioIntegrado * this.porcentajeDescuento;
+      const subTotal = diasCotizados * descuentoDiario;
+      const seguroVivienda =
+        (this.employee.tipoNomina / diasCotizados) * diasCotizados;
+      const descuentoInfonavit = subTotal + seguroVivienda;
+      let descuentoInfonavitNomina;
+      if (this.employee.tipoNomina == 15) {
+        descuentoInfonavitNomina = (descuentoInfonavit / 4).toFixed(2);
+      } else {
+        descuentoInfonavitNomina = (descuentoInfonavit / 9).toFixed(2);
+      }
+      return {
+        descuentoDiario: descuentoDiario.toFixed(2),
+        subTotal: subTotal.toFixed(2),
+        descuentoInfonavit: descuentoInfonavit.toFixed(2),
+        descuentoInfonavitNomina: descuentoInfonavitNomina,
+      };
     },
     download() {
       let windowHeight = window.innerHeight;

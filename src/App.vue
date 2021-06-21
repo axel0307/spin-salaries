@@ -1,10 +1,5 @@
 <template>
   <router-view />
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/dashboard/welcome">Welcome</router-link>
-  </div> -->
-
   <Footer class="d-none d-lg-flex"></Footer>
 </template>
 

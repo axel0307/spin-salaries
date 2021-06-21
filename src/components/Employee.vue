@@ -17,7 +17,7 @@
         ><i class="mx-1 my-auto icon-size fw-bold align-right bi bi-pen"></i
       ></router-link>
       <router-link
-        v-if="data.data.status == 'true'"
+        v-if="data.data.status == true || data.data.status == 'true'"
         class="link-success"
         :to="`/dashboard/payment/${data.id}`"
         ><i
@@ -25,7 +25,10 @@
           class="mx-1 my-auto icon-size-g fw-bold align-left bi bi-piggy-bank"
         ></i
       ></router-link>
-      <router-link class="link-danger" :to="`/dashboard/liquidate`"
+      <router-link
+        v-if="data.data.status == true || data.data.status == 'true'"
+        class="link-danger"
+        :to="`/dashboard/liquidate`"
         ><i
           class="mx-1 my-auto icon-size fw-bold align-left bi bi-door-open"
         ></i

@@ -23,6 +23,8 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 
 // Importamos nuevas fuentes
 import "../src/assets/fonts/fonts.css"
+
+// Para animaciones
 const myMixin = {
     created: function () {
         this.gsap = gsap;

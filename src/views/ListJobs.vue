@@ -3,7 +3,7 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table table-responsive-sm table-bordered table-striped table-hover"
+        class="table  table-responsive-sm table-bordered table-striped table-hover"
       >
         <thead>
           <tr>
@@ -18,36 +18,6 @@
         </thead>
         <tbody>
           <Job v-for="(job, i) in jobs" :key="i" :data="job"></Job>
-          <!-- <tr>
-            <th scope="row">1</th>
-            <td>43S4S</td>
-            <td>Construcción Civil</td>
-            <td>Arquitecto</td>
-            <td>5.00</td>
-            <td>500</td>
-            <td>5000</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>54S7S</td>
-            <td>Recursos Humanos</td>
-            <td>Secretaria</td>
-            <td>10.00</td>
-            <td>1000</td>
-            <td>10000</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>56S3S</td>
-            <td>Relaciones Públicas</td>
-            <td>Administrador</td>
-            <td>7.00</td>
-            <td>700</td>
-            <td>7000</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr> -->
         </tbody>
       </table>
       <Loading class="mx-auto" v-if="load"></Loading>

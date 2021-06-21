@@ -16,7 +16,10 @@
         :to="`/dashboard/editemployee/${data.id}`"
         ><i class="mx-1 my-auto icon-size fw-bold align-right bi bi-pen"></i
       ></router-link>
-      <router-link class="link-success" :to="`/dashboard/payment/${data.id}`"
+      <router-link
+        v-if="data.data.status == 'true'"
+        class="link-success"
+        :to="`/dashboard/payment/${data.id}`"
         ><i
           style="font-size: 1.5rem"
           class="mx-1 my-auto icon-size-g fw-bold align-left bi bi-piggy-bank"

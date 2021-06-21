@@ -3,14 +3,14 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table caption-top table-responsive-sm table-bordered table-striped table-hover"
+        class="table  caption-top table-responsive-sm table-bordered table-striped table-hover"
       >
         <caption>
           <div class="d-flex justify-content-center">
             <i class="mx-1 my-auto fw-bold icon-size align-right bi bi-pen"></i
             ><span class="pe-4"> = Editar empleado</span>
             <i
-              class="mx-1 my-auto fw-bold icon-size align-right bi bi-piggy-bank"
+              class="mx-1 my-auto  fw-bold icon-size align-right bi bi-piggy-bank"
             ></i
             ><span class="pe-4"> = Pagar nómina</span>
             <i
@@ -36,25 +36,6 @@
             :key="i"
             :data="employee"
           ></Employee>
-
-          <!-- <tr>
-            <th scope="row">2</th>
-            <td>54S7S</td>
-            <td>Veronica Gonzalez Estrada</td>
-            <td>Secretaria</td>
-            <td>Recursos Humanos</td>
-            <td>Confianza</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>56S3S</td>
-            <td>Fenando Teron Pedro</td>
-            <td>Administrador</td>
-            <td>Relaciones Públicas</td>
-            <td>Base</td>
-            <td><i class="mx-1 align-middle bi bi-pencil"></i></td>
-          </tr> -->
         </tbody>
       </table>
       <Loading class="mx-auto" v-if="load"></Loading>

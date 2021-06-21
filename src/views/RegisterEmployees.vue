@@ -434,7 +434,6 @@
         </div>
       </div>
     </div>
-    {{ employee }}
   </form>
 </template>
 

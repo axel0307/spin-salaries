@@ -496,16 +496,16 @@
         {{ totalNetoNomina }}
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Percepción aguinaldo</span>
-        <!-- {{ percepcionAguinaldo }} -->
+        {{ percepcionAguinaldo }}
       </div>
     </div>
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Percepción vacaciones</span>
-        <!-- {{ percepcionVacaciones }} -->
+        {{ percepcionVacaciones }}
       </div>
     </div>
     <div class="row">
@@ -517,7 +517,7 @@
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Infonavit</span>
-        <!-- {{ infonavit }} -->
+         {{ infonavit }}
       </div>
     </div>
     <div class="row">
@@ -540,7 +540,7 @@
     <div class="row">
       <div class="mx-auto col-md-4">
         <span class="fw-bold text-danger">Horas extra</span>
-        <!-- {{ percepcionHorasExtra() }} -->
+         {{ percepcionHorasExtra() }} 
       </div>
     </div>
     <div class="row">
@@ -554,12 +554,12 @@
         <span class="fw-bold text-danger">ISR</span>
         {{ isrPeriodo }}
       </div>
-    </div>
+    </div> -->
   </div>
   <button
     type="button"
     class="mt-2 mb-3 btn btn-outline-danger"
-    @click="download"
+    @click="descargarPDF"
   >
     Pagar nómina
   </button>
@@ -1109,119 +1109,33 @@ export default {
         descuentoInfonavitNomina: descuentoInfonavitNomina,
       };
     },
-    download() {
-      let windowHeight = window.innerHeight;
-      let windowWidth = window.innerWidth;
-
-      const doc = new jsPDF({
-        orientation: "p",
-        unit: "px",
-        format: "a4",
-        // orientation: "portrait",
-        // unit: "in",
-        // format: "letter",
-        putOnlyUsedFonts: true,
-        floatPrecision: 16, // or "smart", default is 16
-        encryption: {
-          userPassword: `${this.employee.rfc}`,
-        },
-      });
-      var widthPage = doc.internal.pageSize.getWidth();
-      var heightPage = doc.internal.pageSize.getHeight();
-
-      const canvasElement = document.createElement("canvas");
-      canvasElement.width = windowWidth;
-      canvasElement.height = windowHeight;
-      /*
-      doc.setFontSize(16).text(this.heading, 0.5, 1.0);
-      doc.setLineWidth(0.01).line(0.5, 1.1, 8.0, 1.1);
-      doc
-        .setFont("helvetica")
-        .setFontSize(12)
-        .text(this.moreText, 0.5, 3.5, { align: "left", maxWidth: "7.5" });
-      */
-
-      html2canvas(this.$refs.content, {
-        // canvas: canvasElement,
-        // width: windowWidth,
-        // height: windowHeight,
-        useCORS: true,
-        width: window.screen.availWidth,
-        height: window.screen.availHeight,
-        windowWidth: this.$refs.content.scrollWidth,
-        windowHeight: this.$refs.content.scrollHeight,
-        x: window.pageXOffset,
-        // x: 0,
-        y: window.pageYOffset,
-      })
-        .then((canvas) => {
-          const img = canvas.toDataURL("image/jpeg", 1);
-          // document.body.appendChild(canvas);
-          // doc.addImage(img, "JPEG", 20, -50, widthPage + 100, heightPage - 500);
-          doc.addImage(img, "JPEG", 20, -50, widthPage + 135, heightPage - 200);
-          // doc.addImage(img, "JPEG", 0, 0, widthPage, heightPage);
-
-          this.fechaActual = moment().format("YYYY-MM-DD");
-          doc.save(`NDESA-${this.employee.rfc}-${this.fechaActual}`);
-
-          alert(
-            `Se descargara un comprobante de pago de nómina del empleado con clave ${this.employee.clave}`
-          );
-        })
-        .catch((err) => {
-          alert("Algo salio mal");
-        });
-      /*
-      doc.html(this.$refs.content.innerHTML, {
-        callback: function (doc) {
-          this.fechaActual = moment().format("YYYY-MM-DD");
-          doc.save(`Nomina ${this.fechaActual}`);
-        },
-        x: 0.5,
-        y: 3.5,
-      });
-      */
-      router.push("/dashboard/welcome");
-    },
     descargarPDF() {
-      let windowHeight = window.innerHeight;
-      let windowWidth = window.innerWidth;
-
-      const doc = new jsPDF({
+      let pdf = new jsPDF({
         orientation: "p",
         unit: "mm",
-        format: "tabloid",
-        // orientation: "portrait",
-        // unit: "in",
-        // format: "letter",
-        putOnlyUsedFonts: true,
-        floatPrecision: 16, // or "smart", default is 16
+        format: "ledger",
         encryption: {
           userPassword: `${this.employee.rfc}`,
         },
       });
 
-      const canvasElement = document.createElement("canvas");
-      canvasElement.width = windowWidth;
-      canvasElement.height = windowHeight;
+      window.scrollTo(0, 0);
 
       html2canvas(this.$refs.content, {
-        canvas: canvasElement,
-        width: windowWidth,
-        height: windowHeight,
+        scrollX: -window.scrollX,
+        scrollY: -window.scrollY,
+        allowTaint: true,
+        useCORS: true,
+        logging: false,
+        height: window.outerHeight + window.innerHeight,
+        windowHeight: window.outerHeight + window.innerHeight,
       })
         .then((canvas) => {
           const img = canvas.toDataURL("image/jpeg", 1);
-          var width = doc.internal.pageSize.getWidth();
-          var height = doc.internal.pageSize.getHeight();
-          const imgProps = doc.getImageProperties(img);
-          const pdfWidth = doc.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          doc.addImage(img, "JPEG", 0, 0, pdfWidth, pdfHeight);
-          // document.body.appendChild(canvas);
+          pdf.addImage(img, "JPEG", 10, 10);
 
           this.fechaActual = moment().format("YYYY-MM-DD");
-          doc.save(`Nomina ${this.fechaActual}`);
+          pdf.save(`NDESA-${this.employee.rfc}-${this.fechaActual}`);
 
           alert(
             `Se descargara un comprobante de pago de nómina del empleado con clave ${this.employee.clave}`
@@ -1230,102 +1144,9 @@ export default {
         .catch((err) => {
           alert("Algo salio mal");
         });
-    },
-    otraDescarga() {
-      const { $, jQuery } = require("jquery");
-      global.$ = $;
-      global.jQuery = jQuery;
-      // var contenedor = document.getElementById("contenedor");
-      // var contenedorWidth = contenedor.width();
-      // var contenedorHeight = contenedor.height();
 
-      var contenedorHeight = $("#contenedor").height();
-      var contenedorWidth = $("#contenedor").width();
-
-      // var divHeight = $('#div_id').height();
-      // var divWidth = $('#div_id').width();
-      var ratio = contenedorHeight / contenedorWidth;
-      html2canvas(document.getElementById("contenedor"), {
-        height: contenedorHeight,
-        width: contenedorWidth,
-        onrendered: function (canvas) {
-          var image = canvas.toDataURL("image/jpeg");
-          var doc = new jsPDF(); // using defaults: orientation=portrait, unit=mm, size=A4
-          var width = doc.internal.pageSize.getWidth();
-          var height = doc.internal.pageSize.getHeight();
-          height = ratio * width;
-          doc.addImage(image, "JPEG", 0, 0, width - 20, height - 10);
-          doc.save("myPage.pdf"); //Download the rendered PDF.
-        },
-      });
-    },
-
-    pdfDimensiones() {
-      html2canvas(document.getElementById("contenedor")).then((canvas) => {
-        const contenedor = document.getElementById("contenedor");
-        const componentWidth = contenedor.offsetWidth;
-        const componentHeight = contenedor.offsetHeight;
-
-        const orientation = componentWidth >= componentHeight ? "l" : "p";
-
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF({
-          orientation,
-          unit: "px",
-        });
-
-        pdf.internal.pageSize.width = componentWidth;
-        pdf.internal.pageSize.height = componentHeight;
-
-        pdf.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
-        pdf.save("download.pdf");
-      });
-    },
-
-    exportpdf() {
-      html2canvas(document.getElementById("contenedor")).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF({
-          orientation: "landscape",
-        });
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height / imgProps.width) * (pdfWidth * 2);
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("download.pdf");
-      });
-    },
-
-    preubaDownload() {
-      let windowHeight = window.innerHeight;
-      let windowWidth = window.innerWidth;
-
-      let pdf = new jsPDF();
-
-      let canvasElement = document.createElement("canvas");
-      canvasElement.width = windowWidth;
-      canvasElement.height = windowHeight;
-
-      html2canvas(this.$refs.pdf, {
-        canvas: canvasElement,
-        width: windowWidth,
-        height: windowHeight,
-      })
-        .then((canvas) => {
-          const img = canvas.toDataURL("image/jpeg", 1);
-          // document.body.appendChild(canvas);
-          pdf.addImage(img, "JPEG", 10, 10);
-          pdf.save("sample.pdf");
-
-          alert("works");
-        })
-        .catch((err) => {
-          alert("error");
-        });
+      router.push("/dashboard/welcome");
     },
   },
 };
 </script>
-
-<style>
-</style>

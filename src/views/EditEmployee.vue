@@ -395,7 +395,6 @@
         Guardar información
       </button>
     </div>
-    {{ employee }}
   </form>
 </template>
 

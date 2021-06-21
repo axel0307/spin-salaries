@@ -75,7 +75,7 @@
     <div class="pb-5 col-12">
       <button
         type="button"
-        class="btn btn-outline-primary"
+        class="btn btn-outline-danger"
         data-bs-toggle="modal"
         data-bs-target="#botonRegistrar"
       >

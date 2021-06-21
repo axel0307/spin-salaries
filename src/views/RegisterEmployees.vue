@@ -331,7 +331,7 @@
         <input
           type="number"
           class="form-control"
-          min="1"
+          min="0"
           max="15"
           id="horasExtra"
           v-model.number="employee.horasExtra"
@@ -384,7 +384,7 @@
     <div class="pb-5 col-12">
       <button
         type="button"
-        class="btn btn-outline-primary"
+        class="btn btn-outline-danger"
         data-bs-toggle="modal"
         data-bs-target="#botonRegistrar"
       >
@@ -504,9 +504,11 @@ export default {
     mostrarHorasExtras() {
       if (document.getElementById("tiempoExtra").checked) {
         document.getElementById("horasExtra").style.display = "block";
+        document.getElementById("horasExtra").min = 1;
       } else {
         document.getElementById("horasExtra").style.display = "none";
         document.getElementById("horasExtra").value = 0;
+        document.getElementById("horasExtra").min = 0;
       }
     },
     borrarHoras() {

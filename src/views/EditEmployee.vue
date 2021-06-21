@@ -155,6 +155,7 @@
         id="labor"
         required="true"
         v-model="employee.trabajo"
+        disabled
       >
         <option disabled value="">Selecciona una opción</option>
         <option
@@ -174,6 +175,7 @@
         id="tipoNomina"
         required="true"
         v-model="employee.tipoNomina"
+        disabled
       >
         <option selected disabled value="">Selecciona una opción</option>
         <option value="7">Semanal</option>
@@ -339,7 +341,7 @@
         <input
           type="number"
           class="form-control"
-          min="1"
+          min="0"
           max="15"
           id="horasExtra"
           v-model.number="employee.horasExtra"
@@ -389,7 +391,7 @@
       </select>
     </div>
     <div class="pb-3 col-12">
-      <button type="submit" class="btn btn-outline-primary">
+      <button type="submit" class="btn btn-outline-danger">
         Guardar información
       </button>
     </div>
@@ -433,9 +435,11 @@ export default {
     mostrarHorasExtras() {
       if (document.getElementById("tiempoExtra").checked) {
         document.getElementById("horasExtra").style.display = "block";
+        document.getElementById("horasExtra").min = 1;
       } else {
         document.getElementById("horasExtra").style.display = "none";
         document.getElementById("horasExtra").value = 0;
+        document.getElementById("horasExtra").min = 0;
       }
     },
     borrarHoras() {

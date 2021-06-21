@@ -12,12 +12,12 @@
       <div class="col-auto mx-auto col-lg-4">
         <div
           v-if="errors"
-          class="alert alert-danger d-flex align-items-center alert-dismissible fade show"
+          class=" alert alert-danger d-flex align-items-center alert-dismissible fade show"
           role="alert"
         >
           <div>
             <i
-              class="mx-1 align-middle bi bi-shield-exclamation icon-size text-danger"
+              class="mx-1 align-middle  bi bi-shield-exclamation icon-size text-danger"
             ></i
             >Datos incorrectos
           </div>
@@ -51,7 +51,7 @@
               />
               <label for="user"
                 ><i
-                  class="mx-1 align-middle bi bi-person-circle icon-size text-primary"
+                  class="mx-1 align-middle  bi bi-person-circle icon-size text-primary"
                 ></i
                 >Correo Electrónico</label
               >
@@ -66,14 +66,12 @@
               />
               <label for="pass"
                 ><i
-                  class="mx-1 text-center align-middle bi bi-lock-fill icon-size text-primary"
+                  class="mx-1 text-center align-middle  bi bi-lock-fill icon-size text-primary"
                 ></i
                 >Contraseña</label
               >
             </div>
-            <button type="submit" class="btn btn-outline-primary">
-              Entrar
-            </button>
+            <button type="submit" class="btn btn-outline-danger">Entrar</button>
           </form>
           <div class="dropdown-divider"></div>
           <a

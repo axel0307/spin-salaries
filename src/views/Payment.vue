@@ -843,67 +843,6 @@ export default {
         parseFloat(this.imssVejez);
       return totalImss.toFixed(2);
     },
-    // totalNetoPercepciones() {
-    //   let totalNetoPercepciones;
-    //   let fondoAhorroTotal = parseFloat(this.percepcionFondoAhorro);
-    //   let otrasPercepcionesTotal = parseFloat(this.totalPercepciones);
-    //   let horasExtrasTotal;
-    //   let vacacionesExtraTotal;
-    //   let aguinaldoExtraTotal;
-    //   // Se valida primero si hay horas extras
-    //   if (this.employee.tiempoExtra == true) {
-    //     horasExtrasTotal = parseFloat(
-    //       this.percepcionHorasExtra().importeTotalHE
-    //     );
-    //   } else {
-    //     horasExtrasTotal = 0;
-    //   }
-
-    //   // Se valida después si hay prima vacacional
-    //   if (this.employee.primaVacacional == true) {
-    //     vacacionesExtraTotal = parseFloat(
-    //       this.percepcionVacaciones().importeVacaciones
-    //     );
-    //   } else {
-    //     vacacionesExtraTotal = 0;
-    //   }
-
-    //   // Por último se valida el aguinaldo
-    //   if (this.employee.aguinaldo == true) {
-    //     aguinaldoExtraTotal = parseFloat(
-    //       this.percepcionAguinaldo().importeAguinaldo
-    //     );
-    //   } else {
-    //     aguinaldoExtraTotal = 0;
-    //   }
-
-    //   totalNetoPercepciones =
-    //     fondoAhorroTotal +
-    //     otrasPercepcionesTotal +
-    //     horasExtrasTotal +
-    //     vacacionesExtraTotal +
-    //     aguinaldoExtraTotal;
-    //   return totalNetoPercepciones.toFixed(2);
-    // },
-    // totalNetoDeducciones() {
-    //   let totalNetoDeducciones;
-    //   let otrasDeducciones = parseFloat(this.totalDeducciones);
-    //   let isrTotal = parseFloat(this.isrPeriodo.isrCalculado);
-    //   let imssTotal = parseFloat(this.imssRetencion);
-    //   let infonavitTotal;
-
-    //   if (this.employee.infonavit == true) {
-    //     infonavitTotal = parseFloat(this.infonavit().descuentoInfonavitNomina);
-    //   } else {
-    //     infonavitTotal = 0;
-    //   }
-
-    //   totalNetoDeducciones =
-    //     otrasDeducciones + isrTotal + imssTotal + infonavitTotal;
-    //   return totalNetoDeducciones.toFixed(2);
-    // },
-
-    // Hacer un metodo que calcule las percepciones que vengan de la base de datos, pero solo para mostrar en pantalla
     totalPercepciones() {
       let arreglo = [];
       let objetoPercepcion = this.percepciones;
@@ -1000,17 +939,6 @@ export default {
         `${this.API_FIREBASE}nomina/empleados/${this.id}.json?auth=${user.idToken}`
       );
       const dataEmployee = await res.json();
-
-      // for (let i in data) {
-      //   this.datos.push({
-      //     id: i,
-      //     data: data[i],
-      //     trabajo: data[i].trabajo,
-      //   });
-      //   console.log(data[i].area);
-      //   console.log(data[i].salario);
-      // }
-      // console.log(this.datos);
 
       this.employee = dataEmployee;
 

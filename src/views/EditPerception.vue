@@ -45,7 +45,7 @@
       />
     </div>
     <div class="pb-5 col-12">
-      <button type="submit" class="btn btn-outline-primary">
+      <button type="submit" class="btn btn-outline-danger">
         Guardar información
       </button>
     </div>

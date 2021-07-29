@@ -3,7 +3,11 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table  caption-top table-responsive-sm table-bordered table-striped table-hover"
+        class="
+          table
+          caption-top
+          table-responsive-sm table-bordered table-striped table-hover
+        "
       >
         <caption>
           <div class="text-center col-md-12">

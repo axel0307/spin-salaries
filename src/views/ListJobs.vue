@@ -3,7 +3,9 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table  table-responsive-sm table-bordered table-striped table-hover"
+        class="
+          table table-responsive-sm table-bordered table-striped table-hover
+        "
       >
         <thead>
           <tr>

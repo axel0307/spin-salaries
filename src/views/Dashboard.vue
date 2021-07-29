@@ -29,11 +29,25 @@
         </div>
         <div class="offcanvas-body">
           <ul
-            class="mb-2 navbar-nav me-auto mb-lg-0 d-xxl-none d-lg-none d-sm-flex"
+            class="
+              mb-2
+              navbar-nav
+              me-auto
+              mb-lg-0
+              d-xxl-none d-lg-none d-sm-flex
+            "
           >
             <router-link
               to="/dashboard/welcome"
-              class="pb-3 my-3 text-center d-flex link-dark text-decoration-none border-bottom"
+              class="
+                pb-3
+                my-3
+                text-center
+                d-flex
+                link-dark
+                text-decoration-none
+                border-bottom
+              "
             >
               <span class="mx-auto fs-5 fw-semibold">Spire Admin</span>
             </router-link>
@@ -45,7 +59,13 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 ><i
-                  class="mx-1 align-middle bi bi-people-fill icon-size text-danger"
+                  class="
+                    mx-1
+                    align-middle
+                    bi bi-people-fill
+                    icon-size
+                    text-danger
+                  "
                 ></i
                 >Empleados</a
               >
@@ -130,7 +150,13 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 ><i
-                  class="mx-1 align-middle bi bi-ui-checks icon-size text-danger"
+                  class="
+                    mx-1
+                    align-middle
+                    bi bi-ui-checks
+                    icon-size
+                    text-danger
+                  "
                 ></i
                 >Deducciones</a
               >
@@ -217,7 +243,7 @@ export default {
         `${this.API_FIREBASE}nomina.json?auth=${user.idToken}`
       );
 
-      console.log(user)
+      console.log(user);
 
       const data = await res.json();
     },

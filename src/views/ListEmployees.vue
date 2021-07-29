@@ -3,14 +3,25 @@
   <div class="mx-auto">
     <div class="table-responsive mx-md-5">
       <table
-        class="table  caption-top table-responsive-sm table-bordered table-striped table-hover"
+        class="
+          table
+          caption-top
+          table-responsive-sm table-bordered table-striped table-hover
+        "
       >
         <caption>
           <div class="d-flex justify-content-center">
             <i class="mx-1 my-auto fw-bold icon-size align-right bi bi-pen"></i
             ><span class="pe-4"> = Editar empleado</span>
             <i
-              class="mx-1 my-auto  fw-bold icon-size align-right bi bi-piggy-bank"
+              class="
+                mx-1
+                my-auto
+                fw-bold
+                icon-size
+                align-right
+                bi bi-piggy-bank
+              "
             ></i
             ><span class="pe-4"> = Pagar nómina</span>
             <i

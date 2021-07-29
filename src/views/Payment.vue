@@ -496,65 +496,6 @@
         {{ totalNetoNomina }}
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Percepción aguinaldo</span>
-        {{ percepcionAguinaldo }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Percepción vacaciones</span>
-        {{ percepcionVacaciones }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Fondo de Ahorro</span>
-        {{ percepcionFondoAhorro }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Infonavit</span>
-         {{ infonavit }}
-      </div>
-    </div>
-    <div class="row">
-      <span class="fw-bold text-danger">IMSS</span>
-      <div class="mx-auto col-md-12">
-        <span class="fw-bold text-dark">Enfermedad:</span>
-        {{ imssEnfermedad }}
-        <span class="fw-bold text-dark">Prestación:</span>
-        {{ imssPrestacion }}
-        <span class="fw-bold text-dark">Gastos médicos:</span>
-        {{ imssMedicos }}
-        <span class="fw-bold text-dark">Invalidez:</span>
-        {{ imssInvalidez }}
-        <span class="fw-bold text-dark">Vejez:</span>
-        {{ imssVejez }}
-        <span class="fw-bold text-dark">Retención:</span>
-        {{ imssRetencion }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Horas extra</span>
-         {{ percepcionHorasExtra() }} 
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">Gravado Total</span>
-        {{ gravadoPeriodo }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-md-4">
-        <span class="fw-bold text-danger">ISR</span>
-        {{ isrPeriodo }}
-      </div>
-    </div> -->
   </div>
   <button
     type="button"

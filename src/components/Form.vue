@@ -50,7 +50,7 @@
           />
           <h1 class="h1 text-danger font-weight-bolder">Iniciar Sesión</h1>
           <form
-            @submit.prevent="validarUsuario"
+            @submit.prevent="doLogin"
             class="px-4 py-3 needs-validation"
             novalidate
           >
@@ -98,6 +98,7 @@
               >
             </div>
             <button type="submit" class="btn btn-outline-danger">Entrar</button>
+            <!-- <n-button type="primary">Primary</n-button> -->
           </form>
           <div class="dropdown-divider"></div>
           <a
@@ -157,17 +158,35 @@
 
 <script>
 import router from "../router/index.js";
+// import { NButton } from "naive-ui";
 
 export default {
   data: () => ({
-    API_KEY: process.env.VUE_APP_API_TOOL_KIT,
-    URL_API: process.env.VUE_APP_URL_GOOGLEAPIS,
+    // API_KEY: process.env.VUE_APP_API_TOOL_KIT,
+    // URL_API: process.env.VUE_APP_URL_GOOGLEAPIS,
     email: "",
     password: "",
-    errors: false,
+    errors: false
   }),
+  // components: {
+  //   NButton
+  // },
   methods: {
+    async doLogin() {
+      try {
+        await this.$store.dispatch("user/doLogin", {
+          email: this.email,
+          password: this.password
+        });
+        localStorage.setItem("user", JSON.stringify(email));
+
+        router.push("/dashboard/welcome");
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
     // Debe ser una función asincrona, de otra forma va a fallar
+    /*
     async validarUsuario() {
       if (this.password.length >= 6 && this.email != "") {
         try {
@@ -176,8 +195,8 @@ export default {
             body: JSON.stringify({
               email: this.email,
               password: this.password,
-              returnSecureToken: true,
-            }),
+              returnSecureToken: true
+            })
           });
 
           const data = await resp.json();
@@ -198,8 +217,9 @@ export default {
       } else {
         return console.log("algo fallo");
       }
-    },
-  },
+    }
+    */
+  }
 };
 </script>
 

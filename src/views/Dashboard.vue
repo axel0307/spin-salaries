@@ -1,6 +1,6 @@
 <template>
   <Header>
-    <div v-if="session" class="collapse-dashboard">
+    <div class="collapse-dashboard">
       <button
         class="p-0 border-0 navbar-toggler"
         type="button"
@@ -178,21 +178,19 @@
               </ul>
             </li>
             <li class="my-3 border-top"></li>
-            <router-link
-              to="/"
-              @click="cerrarSesion"
+            <p
+              @click="doLogout"
               class="border-0 fw-bold text-dark bg-light text-decoration-none"
-              ><i
-                class="mx-1 align-middle bi bi-power icon-size text-danger"
-              ></i
-              >Cerrar Sesión</router-link
             >
+              <i class="mx-1 align-middle bi bi-power icon-size text-danger"></i
+              >Cerrar Sesión
+            </p>
           </ul>
         </div>
       </div>
     </div>
   </Header>
-  <div v-if="session" class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       <div class="px-0 col-2 d-none d-lg-block">
         <Sidebar></Sidebar>
@@ -212,42 +210,59 @@ export default {
   name: "Dashboard",
   components: {
     Header,
-    Sidebar,
+    Sidebar
   },
   data() {
     return {
-      API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
+      // API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
     };
   },
   computed: {
-    session() {
-      const user = localStorage.getItem("user");
-      if (user) {
-        return true;
-      }
-      return false;
-    },
+    // session() {
+    //   const user = localStorage.getItem("user");
+    //   if (user) {
+    //     return true;
+    //   }
+    //   return false;
+    // },
   },
-  mounted() {
-    this.getUser();
-  },
+  // mounted() {
+  //   this.getUser();
+  // },
   methods: {
-    cerrarSesion() {
-      // Se elimina la sesión del usuario en el localStorage
-      localStorage.removeItem("user");
-    },
-    async getUser() {
-      const user = JSON.parse(localStorage.getItem("user"));
+    async doLogout() {
+      try {
+        await this.$store.dispatch("user/doLogout");
+        this.$router.push({ name: "Home" });
+        // this.$buefy.toast.open({
+        //   message: "Logged out success",
+        //   type: "is-success"
+        // });
+      } catch (error) {
+        console.log(error.message);
+        // this.$buefy.toast.open({
+        //   duration: 4000,
+        //   message: error.message,
+        //   type: "is-danger"
+        // });
+      }
+    }
+    // cerrarSesion() {
+    // Se elimina la sesión del usuario en el localStorage
+    // localStorage.removeItem("user");
+    // }
+    // async getUser() {
+    //   const user = JSON.parse(localStorage.getItem("user"));
 
-      const res = await fetch(
-        `${this.API_FIREBASE}nomina.json?auth=${user.idToken}`
-      );
+    //   const res = await fetch(
+    //     `${this.API_FIREBASE}nomina.json?auth=${user.idToken}`
+    //   );
 
-      console.log(user);
+    //   console.log(user);
 
-      const data = await res.json();
-    },
-  },
+    //   const data = await res.json();
+    // },
+  }
 };
 </script>
 

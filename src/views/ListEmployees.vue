@@ -1,7 +1,7 @@
 <template>
   <h1 class="my-3 text-dark">Empleados</h1>
   <div class="mx-auto">
-    <div class="table-responsive mx-md-5">
+    <div v-if="employees" class="table-responsive mx-md-5">
       <table
         class="
           table
@@ -49,45 +49,52 @@
           ></Employee>
         </tbody>
       </table>
-      <Loading class="mx-auto" v-if="load"></Loading>
     </div>
+    <Loading class="mx-auto" v-else></Loading>
   </div>
 </template>
 
 <script>
 import Employee from "../components/Employee.vue";
 import Loading from "../components/Loading.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "ListEmployees",
   data: () => ({
-    API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
-    employees: [],
-    load: false,
+    // API_FIREBASE: process.env.VUE_APP_API_FIREBASE,
+    // employees: [],
+    load: false
   }),
   components: { Employee, Loading },
-  mounted() {
-    this.getEmployees();
-  },
-  methods: {
-    async getEmployees() {
-      this.load = true;
-      const user = JSON.parse(localStorage.getItem("user"));
+  // mounted() {
+  //   this.getEmployees();
+  // },
+  // methods: {
+  //   async getEmployees() {
+  //     this.load = true;
+  //     const user = JSON.parse(localStorage.getItem("user"));
 
-      const res = await fetch(
-        `${this.API_FIREBASE}nomina/empleados.json?auth=${user.idToken}`
-      );
-      const data = await res.json();
+  //     const res = await fetch(
+  //       `${this.API_FIREBASE}nomina/empleados.json?auth=${user.idToken}`
+  //     );
+  //     const data = await res.json();
 
-      for (let i in data) {
-        this.employees.push({
-          id: i,
-          data: data[i],
-        });
-      }
-      this.load = false;
-    },
-  },
+  //     for (let i in data) {
+  //       this.employees.push({
+  //         id: i,
+  //         data: data[i],
+  //       });
+  //     }
+  //     this.load = false;
+  //   },
+  // },
+  computed: {
+    ...mapState("employees", ["employees"])
+    // employeesList() {
+    //   return this.employees;
+    // }
+  }
 };
 </script>
 

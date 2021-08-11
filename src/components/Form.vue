@@ -159,7 +159,6 @@
 <script>
 import router from "../router/index.js";
 // import { NButton } from "naive-ui";
-
 export default {
   data: () => ({
     // API_KEY: process.env.VUE_APP_API_TOOL_KIT,
@@ -180,13 +179,16 @@ export default {
         });
         // localStorage.setItem("user", JSON.stringify(email));
         this.$router.push({ name: "Welcome" });
+        this.$toast.success("Bienvenido!", { position: "top" });
         // router.push("/dashboard/welcome");
       } catch (error) {
         console.log(error.message);
+        this.$toast.error(error.message, { position: "top" });
       }
     }
-    // Debe ser una función asincrona, de otra forma va a fallar
-    /*
+  }
+  // Debe ser una función asincrona, de otra forma va a fallar
+  /*
     async validarUsuario() {
       if (this.password.length >= 6 && this.email != "") {
         try {
@@ -219,7 +221,6 @@ export default {
       }
     }
     */
-  }
 };
 </script>
 

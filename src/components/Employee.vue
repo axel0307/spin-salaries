@@ -1,15 +1,13 @@
 <template>
   <tr>
-    <th class="align-middle" scope="row">{{ data.data.clave }}</th>
+    <th class="align-middle" scope="row">{{ data.clave }}</th>
     <td class="align-middle">
-      {{
-        data.data.nombre + " " + data.data.pApellido + " " + data.data.sApellido
-      }}
+      {{ data.nombre + " " + data.pApellido + " " + data.sApellido }}
     </td>
-    <td class="align-middle">{{ data.data.trabajo.area }}</td>
-    <td class="align-middle">{{ data.data.trabajo.nombre }}</td>
-    <td class="align-middle">{{ data.data.trabajo.salario }}</td>
-    <td class="align-middle">{{ data.data.clase }}</td>
+    <td class="align-middle">{{ data.trabajo.area }}</td>
+    <td class="align-middle">{{ data.trabajo.nombre }}</td>
+    <td class="align-middle">{{ data.trabajo.salario }}</td>
+    <td class="align-middle">{{ data.clase }}</td>
     <td class="align-middle">
       <router-link
         class="link-primary"
@@ -17,7 +15,7 @@
         ><i class="mx-1 my-auto icon-size fw-bold align-right bi bi-pen"></i
       ></router-link>
       <router-link
-        v-if="data.data.status == true || data.data.status == 'true'"
+        v-if="data.status == true || data.status == 'true'"
         class="link-success"
         :to="`/dashboard/payment/${data.id}`"
         ><i
@@ -26,7 +24,7 @@
         ></i
       ></router-link>
       <router-link
-        v-if="data.data.status == true || data.data.status == 'true'"
+        v-if="data.status == true || data.status == 'true'"
         class="link-danger"
         :to="`/dashboard/liquidate`"
         ><i
@@ -40,8 +38,8 @@
 <script>
 export default {
   props: {
-    data: Object,
-  },
+    data: Object
+  }
 };
 </script>
 

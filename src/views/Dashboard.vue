@@ -178,13 +178,15 @@
               </ul>
             </li>
             <li class="my-3 border-top"></li>
-            <p
+            <router-link
+              to="/"
               @click="doLogout"
               class="border-0 fw-bold text-dark bg-light text-decoration-none"
+              ><i
+                class="mx-1 align-middle bi bi-power icon-size text-danger"
+              ></i
+              >Cerrar Sesión</router-link
             >
-              <i class="mx-1 align-middle bi bi-power icon-size text-danger"></i
-              >Cerrar Sesión
-            </p>
           </ul>
         </div>
       </div>

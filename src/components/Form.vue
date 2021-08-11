@@ -178,9 +178,9 @@ export default {
           email: this.email,
           password: this.password
         });
-        localStorage.setItem("user", JSON.stringify(email));
-
-        router.push("/dashboard/welcome");
+        // localStorage.setItem("user", JSON.stringify(email));
+        this.$router.push({ name: "Welcome" });
+        // router.push("/dashboard/welcome");
       } catch (error) {
         console.log(error.message);
       }

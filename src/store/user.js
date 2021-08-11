@@ -80,12 +80,12 @@ const actions = {
     });
     commit("setUser", user);
   },
-  async doLogout({ commit }) {
+  async doLogout() {
     await auth.signOut();
-    // commit("setUser", null);
-    commit("messages/setMessagesListener", null, { root: true });
-    commit("rooms/setRoomsListener", null, { root: true });
-    commit("setUserListener", null);
+    commit("setUser", null);
+    // commit("messages/setMessagesListener", null, { root: true });
+    // commit("rooms/setRoomsListener", null, { root: true });
+    // commit("setUserListener", null);
   },
   async doReset(context, email) {
     await auth.sendPasswordResetEmail(email);

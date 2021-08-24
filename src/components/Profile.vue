@@ -27,8 +27,8 @@
 <script>
 export default {
   data: () => ({
-    saludo: "¡Hola 😃!",
-  }),
+    saludo: "¡Hola 😃!"
+  })
 };
 </script>
 

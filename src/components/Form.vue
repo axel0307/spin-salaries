@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Toast />
     <div class="pt-4 row">
       <div class="col-8 d-none d-lg-flex">
         <img
@@ -10,166 +11,135 @@
       </div>
 
       <div class="col-auto mx-auto col-lg-4">
-        <div
-          v-if="errors"
-          class="
-            alert alert-danger
-            d-flex
-            align-items-center
-            alert-dismissible
-            fade
-            show
-          "
-          role="alert"
-        >
-          <div>
-            <i
-              class="
-                mx-1
-                align-middle
-                bi bi-shield-exclamation
-                icon-size
-                text-danger
-              "
-            ></i
-            >Datos incorrectos
-          </div>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="pt-3 card">
-          <img
-            src="../../src/assets/img/spin-salaries.svg"
-            class="p-2 mx-auto img-fluid d-flex"
-            style="max-width: 6rem"
-            alt="logo"
-          />
-          <h1 class="h1 text-danger font-weight-bolder">Iniciar Sesión</h1>
-          <form
-            @submit.prevent="doLogin"
-            class="px-4 py-3 needs-validation"
-            novalidate
-          >
-            <div class="mb-3 form-floating">
-              <input
-                type="email"
-                v-model.trim="email"
-                class="form-control"
-                id="user"
-                placeholder="email@example.com"
+        <div class="pt-3">
+          <Card>
+            <template #header>
+              <img
+                src="../../src/assets/img/spin-salaries.svg"
+                class="p-2 mx-auto img-fluid d-flex"
+                style="max-width: 6rem"
+                alt="logo"
               />
-              <label for="user"
-                ><i
-                  class="
-                    mx-1
-                    align-middle
-                    bi bi-person-circle
-                    icon-size
-                    text-primary
-                  "
-                ></i
-                >Correo Electrónico</label
+            </template>
+            <template #title>
+              <h3 class="p-text-center text-danger">Iniciar Sesión</h3>
+            </template>
+            <template #content>
+              <form
+                @submit.prevent="handleSubmit(!v$.$invalid)"
+                class="text-start"
               >
-            </div>
-            <div class="mb-3 form-floating">
-              <input
-                type="password"
-                v-model.trim="password"
-                class="form-control"
-                id="pass"
-                placeholder="Password"
-              />
-              <label for="pass"
-                ><i
-                  class="
-                    mx-1
-                    text-center
-                    align-middle
-                    bi bi-lock-fill
-                    icon-size
-                    text-primary
-                  "
-                ></i
-                >Contraseña</label
-              >
-            </div>
-            <button type="submit" class="btn btn-outline-danger">Entrar</button>
-            <!-- <n-button type="primary">Primary</n-button> -->
-          </form>
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            type="button"
-            href.prevent="#"
-            data-bs-toggle="modal"
-            data-bs-target="#olvide"
-          >
-            ¿Olvidaste tu contraseña?</a
-          >
-
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="olvide"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            data-bs-scroll="true"
-            tabindex="-1"
-            aria-labelledby="olvidePassword"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header d-none d-lg-flex">
-                  <h5 class="modal-title" id="olvidePassword">Oh no...</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                <div class="p-fluid">
+                  <div class="p-field mt-0 m-3">
+                    <label
+                      for="email"
+                      :class="{ 'p-error': v$.email.$invalid && submitted }"
+                      >Email</label
+                    >
+                    <span class="p-input-icon-right">
+                      <i class="pi pi-envelope" />
+                      <InputText
+                        id="email"
+                        v-model="v$.email.$model"
+                        :class="{ 'p-invalid': v$.email.$invalid && submitted }"
+                      />
+                    </span>
+                    <span v-if="v$.email.$error && submitted">
+                      <span
+                        id="email-error"
+                        v-for="(error, index) of v$.email.$errors"
+                        :key="index"
+                      >
+                        <small class="p-error">{{ error.$message }}</small>
+                      </span>
+                    </span>
+                    <small
+                      v-else-if="
+                        (v$.email.$invalid && submitted) ||
+                        v$.email.$pending.$response
+                      "
+                      class="p-error"
+                      >{{
+                        v$.email.required.$message.replace("Value", "Email")
+                      }}</small
+                    >
+                  </div>
+                  <div class="p-field m-3">
+                    <label
+                      for="password"
+                      :class="{
+                        'p-error': v$.password.$invalid && submitted
+                      }"
+                      >Password</label
+                    >
+                    <span class="p-input-icon-right">
+                      <i class="pi pi-unlock" />
+                      <Password
+                        id="password"
+                        v-model="v$.password.$model"
+                        :class="{
+                          'p-invalid': v$.password.$invalid && submitted
+                        }"
+                        :feedback="feed"
+                      />
+                    </span>
+                    <small
+                      v-if="
+                        (v$.password.$invalid && submitted) ||
+                        v$.password.$pending.$response
+                      "
+                      class="p-error"
+                      >{{
+                        v$.password.required.$message.replace(
+                          "Value",
+                          "Password"
+                        )
+                      }}</small
+                    >
+                  </div>
                 </div>
-                <div class="modal-body">
-                  Necesitas llamar al siguiente número 55-43-37-25-44 para
-                  hablar con un asesor de Recursos Humanos y te restablezca tu
-                  contraseña
+                <div class="text-center">
+                  <Button
+                    type="submit"
+                    label="Entrar"
+                    class="p-button-sm p-button-info my-3"
+                  />
                 </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="my-0 btn btn-outline-success"
-                    data-bs-dismiss="modal"
-                  >
-                    Entendido<i class="mx-1 align-middle bi bi-check-lg"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              </form>
+            </template>
+          </Card>
         </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import router from "../router/index.js";
-// import { NButton } from "naive-ui";
+import { useVuelidate } from "@vuelidate/core";
+import { email, required } from "@vuelidate/validators";
+
 export default {
+  setup: () => ({ v$: useVuelidate() }),
   data: () => ({
     // API_KEY: process.env.VUE_APP_API_TOOL_KIT,
     // URL_API: process.env.VUE_APP_URL_GOOGLEAPIS,
     email: "",
     password: "",
-    errors: false
+    submitted: false,
+    feed: false
   }),
-  // components: {
-  //   NButton
-  // },
+  validations() {
+    return {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required
+      }
+    };
+  },
   methods: {
     async doLogin() {
       try {
@@ -179,48 +149,31 @@ export default {
         });
         // localStorage.setItem("user", JSON.stringify(email));
         this.$router.push({ name: "Welcome" });
-        this.$toast.success("Bienvenido!", { position: "top" });
+        this.$toast.add({
+          severity: "success",
+          summary: "Bienvenido(a)",
+          life: 3000
+        });
         // router.push("/dashboard/welcome");
       } catch (error) {
         console.log(error.message);
-        this.$toast.error(error.message, { position: "top" });
+        this.$toast.add({
+          severity: "error",
+          detail: error.message,
+          life: 5000
+        });
       }
+    },
+
+    handleSubmit(isFormValid) {
+      this.submitted = true;
+
+      if (!isFormValid) {
+        return;
+      }
+      this.doLogin();
     }
   }
-  // Debe ser una función asincrona, de otra forma va a fallar
-  /*
-    async validarUsuario() {
-      if (this.password.length >= 6 && this.email != "") {
-        try {
-          const resp = await fetch(`${this.URL_API}?key=${this.API_KEY}`, {
-            method: "POST",
-            body: JSON.stringify({
-              email: this.email,
-              password: this.password,
-              returnSecureToken: true
-            })
-          });
-
-          const data = await resp.json();
-
-          if (data.error) {
-            this.errors = true;
-          } else {
-            this.errors = false;
-            //console.log(data); // Vemos todo el objeto JSON del usuario que se loguea
-
-            // Almacenamos la sesion de los usuarios en LocalStorage
-            localStorage.setItem("user", JSON.stringify(data));
-
-            // Realizamos una redirección hacia la ruta de "welcome.vue"
-            router.push("/dashboard/welcome");
-          }
-        } catch (error) {}
-      } else {
-        return console.log("algo fallo");
-      }
-    }
-    */
 };
 </script>
 

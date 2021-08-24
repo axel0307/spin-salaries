@@ -1,13 +1,30 @@
-import { createApp } from "vue";
-import "./registerServiceWorker";
-import App from "./App.vue";
-import router from "./router";
-import moment from "moment";
-import { jsPDF } from "jspdf";
-import gsap from "gsap";
-import html2canvas from "html2canvas";
-import store from "./store/index";
-import Toaster from "@meforma/vue-toaster";
+import { createApp } from 'vue';
+import './registerServiceWorker';
+import App from './App.vue';
+import router from './router';
+import moment from 'moment';
+import { jsPDF } from 'jspdf';
+import gsap from 'gsap';
+import html2canvas from 'html2canvas';
+import store from './store/index';
+
+import PrimeVue from 'primevue/config';
+import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
+import Calendar from 'primevue/calendar';
+import Checkbox from 'primevue/checkbox';
+import Password from 'primevue/password';
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
+import Card from 'primevue/card';
+
+// import 'primevue/resources/themes/mdc-light-indigo/theme.css';
+import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
+
+import '@vuelidate/core';
+import '@vuelidate/validators';
 
 // Importamos Popper para Bootstrap
 
@@ -24,7 +41,7 @@ import Toaster from "@meforma/vue-toaster";
 // import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Importamos nuevas fuentes
-import "../src/assets/fonts/fonts.css";
+import '../src/assets/fonts/fonts.css';
 
 // Para animaciones
 const myMixin = {
@@ -32,13 +49,22 @@ const myMixin = {
     this.gsap = gsap;
   }
 };
-
-createApp(App)
+const app = createApp(App);
+app
   .mixin(myMixin)
   .use(store)
+  .use(PrimeVue)
+  .use(ToastService)
   .use(router)
-  .use(Toaster)
   .use(moment)
   .use(html2canvas)
   .use(jsPDF)
-  .mount("#app");
+  .mount('#app');
+app
+  .component('InputText', InputText)
+  .component('Button', Button)
+  .component('Calendar', Calendar)
+  .component('Checkbox', Checkbox)
+  .component('Password', Password)
+  .component('Toast', Toast)
+  .component('Card', Card);

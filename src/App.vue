@@ -11,13 +11,13 @@ import Header from "@/components/Header.vue";
 export default {
   components: {
     Header,
-    Footer,
+    Footer
   },
   watch: {
     $route(to, from) {
       document.title = to.meta.title || "Spin Salaries";
-    },
-  },
+    }
+  }
 };
 </script>
 

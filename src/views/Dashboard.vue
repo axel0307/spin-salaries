@@ -236,14 +236,22 @@ export default {
       try {
         await this.$store.dispatch("user/doLogout");
         this.$router.push({ name: "Home" });
-        this.$toast.success("Vuelva pronto!", { position: "top" });
+        this.$toast.add({
+          severity: "success",
+          summary: "Hasta pronto!",
+          life: 3000
+        });
         // this.$buefy.toast.open({
         //   message: "Logged out success",
         //   type: "is-success"
         // });
       } catch (error) {
         console.log(error.message);
-        this.$toast.error(error.message, { position: "top" });
+        this.$toast.add({
+          severity: "error",
+          detail: error.message,
+          life: 5000
+        });
         // this.$buefy.toast.open({
         //   duration: 4000,
         //   message: error.message,
